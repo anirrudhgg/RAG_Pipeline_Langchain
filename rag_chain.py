@@ -62,6 +62,9 @@ def _retrieve(inputs: dict) -> dict:
         results = retrieval.similarity_search(inputs["question"], k=inputs["k"])
         docs = [d for d, _ in results]
         scores = [s for _, s in results]
+    # Small-to-big: search with small chunks, give the LLM each hit plus its neighbours
+    if config.CONTEXT_WINDOW > 0:
+        docs, scores = retrieval.expand_context(docs, scores, window=config.CONTEXT_WINDOW)
     return {"docs": docs, "scores": scores, "retrieval_ms": (time.perf_counter() - t) * 1000}
 
 

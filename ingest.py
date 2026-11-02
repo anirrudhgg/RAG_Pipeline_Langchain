@@ -123,8 +123,29 @@ def load_pdfs() -> list[Document]:
     return docs
 
 
+# Wikipedia-style section headings that end the article content, e.g. "References[edit]"
+WEB_REFERENCES_HEADING = re.compile(
+    r"^\s*(references|notes|citations|bibliography|sources|further reading|external links)\s*(\[edit\])?\s*$",
+    re.I | re.M,
+)
+
+
+def remove_web_reference_section(text: str) -> str:
+    """
+    Cut a web page at its reference list (and everything after: further reading,
+    external links...). Same reason as for the PDFs: once web pages were split
+    into 300-character chunks, Wikipedia's reference list became its own chunk
+    and ranked #1 for almost every RAG question. Only headings in the second
+    half of the page count, to avoid cutting a 'Notes' heading near the top.
+    """
+    for m in WEB_REFERENCES_HEADING.finditer(text):
+        if m.start() >= len(text) * 0.4:
+            return text[:m.start()]
+    return text
+
+
 def load_web() -> list[Document]:
-    """One Document per web page."""
+    """One Document per web page (reference lists removed)."""
     docs = []
     for url in read_list(config.URLS_FILE):
         try:
@@ -134,7 +155,7 @@ def load_web() -> list[Document]:
             continue
 
         for d in loaded:
-            text = clean_text(d.page_content)
+            text = clean_text(remove_web_reference_section(d.page_content))
             if len(text) < 200:
                 print(f"  ! Very little text on {url}, skipped (page may need JavaScript)")
                 continue
@@ -215,6 +236,7 @@ def load_youtube() -> list[Document]:
                     "doc_type": "youtube",
                     "source": f"https://www.youtube.com/watch?v={video_id}&t={int(start)}s",
                     "title": title,
+                    "video_id": video_id,
                     "start_seconds": int(start),
                     "timestamp": format_timestamp(start),
                 },

@@ -29,11 +29,19 @@ OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.1:8b")
 
 # --- Chunking (in characters), per document type -------------------------------
 # Chosen with experiments.py (15 size/overlap combinations, 12 test questions,
-# results in results/chunking_summary.csv). Overlap 100 beat 0 and 200 for every size.
+# results in results/chunking_summary.csv). Overlap 100 beat 0 and 200 for every size,
+# and 300/100 was the best setting overall (MRR 0.86, hit@4 1.00).
+#
+# Per type, the experiment preferred web 1000 and video unsplit (~1000-1200 chars).
+# But mixing sizes biased retrieval: 1,500 short PDF chunks outranked the long video
+# chunks (diagnose.py: the right video chunk fell to rank 28 for "When should I use
+# RAG instead of fine-tuning?"), and video chunks over ~1000 chars were also cut off
+# by the embedding model's 256-token limit. So all types use the same size, and
+# small-to-big expansion (CONTEXT_WINDOW) gives the LLM enough text to answer from.
 CHUNK_SETTINGS = {
-    "pdf": {"chunk_size": 300, "chunk_overlap": 100},       # dense papers: small chunks match precisely (MRR 0.89)
-    "web": {"chunk_size": 1000, "chunk_overlap": 100},      # doc pages: keep a whole section together (MRR 0.88)
-    "youtube": {"chunk_size": 1500, "chunk_overlap": 0},    # = never split a 60 s window; windows are natural units (MRR 1.00)
+    "pdf": {"chunk_size": 300, "chunk_overlap": 100},
+    "web": {"chunk_size": 300, "chunk_overlap": 100},
+    "youtube": {"chunk_size": 300, "chunk_overlap": 100},
 }
 
 # --- Retrieval defaults ---------------------------------------------------------
@@ -41,6 +49,13 @@ CHUNK_SETTINGS = {
 # distinct results). k=6 because the small PDF chunks carry less text each.
 DEFAULT_K = 6
 DEFAULT_SEARCH = "mmr"
+
+# Small-to-big retrieval: the LLM gets each retrieved chunk plus this many
+# neighbouring chunks from the same document on each side
+# (~250 chars -> ~800 chars of continuous text).
+# Small chunks are best for finding passages, but too short to answer from.
+# Set to 0 to switch it off (e.g. to compare answer quality with and without).
+CONTEXT_WINDOW = 2
 
 # Length of one YouTube transcript window in seconds (keeps timestamps for citations)
 YOUTUBE_WINDOW_SECONDS = 60
