@@ -170,8 +170,8 @@ Overlap 100 beat 0 and 200 at every size. The test set is small (12 questions), 
 
 ## Team
 
-Anirudh Gopishankar
-Hussein A. Monem
-Marc Baroud
-Jeremie HB
-Sakhib Ahmed Baig
+1. Anirudh Gopishankar
+2. Hussein A. Monem
+3. Marc Baroud
+4. Jeremie HB
+5. Sakhib Ahmed Baig
