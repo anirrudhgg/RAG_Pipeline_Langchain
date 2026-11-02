@@ -28,13 +28,19 @@ EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.1:8b")
 
 # --- Chunking (in characters), per document type -------------------------------
-# Starting values. Tune them with the chunking experiments and explain the
-# final choice in the presentation.
+# Chosen with experiments.py (15 size/overlap combinations, 12 test questions,
+# results in results/chunking_summary.csv). Overlap 100 beat 0 and 200 for every size.
 CHUNK_SETTINGS = {
-    "pdf": {"chunk_size": 1000, "chunk_overlap": 150},      # dense academic text
-    "web": {"chunk_size": 800, "chunk_overlap": 100},       # shorter sections, more noise
-    "youtube": {"chunk_size": 1000, "chunk_overlap": 100},  # ~60 s transcript windows
+    "pdf": {"chunk_size": 300, "chunk_overlap": 100},       # dense papers: small chunks match precisely (MRR 0.89)
+    "web": {"chunk_size": 1000, "chunk_overlap": 100},      # doc pages: keep a whole section together (MRR 0.88)
+    "youtube": {"chunk_size": 1500, "chunk_overlap": 0},    # = never split a 60 s window; windows are natural units (MRR 1.00)
 }
+
+# --- Retrieval defaults ---------------------------------------------------------
+# MMR beat plain similarity search in experiments.py (hit@4 1.00 vs 0.92, more
+# distinct results). k=6 because the small PDF chunks carry less text each.
+DEFAULT_K = 6
+DEFAULT_SEARCH = "mmr"
 
 # Length of one YouTube transcript window in seconds (keeps timestamps for citations)
 YOUTUBE_WINDOW_SECONDS = 60
