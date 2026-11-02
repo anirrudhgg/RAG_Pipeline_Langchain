@@ -1,0 +1,13 @@
+# Streamlit settings for this project.
+# The file watcher trips over PyTorch's internal modules and floods the
+# terminal with harmless errors, so it is switched off. Restart the app
+# (Ctrl+C, then streamlit run app.py) after changing code.
+[server]
+fileWatcherType = "none"
+
+[browser]
+gatherUsageStats = false
+
+[client]
+# Hide the "Deploy" button and developer menu during the demo
+toolbarMode = "viewer"
