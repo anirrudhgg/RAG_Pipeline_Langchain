@@ -1,0 +1,11 @@
+id,question,category,expected_answer,expected_source,notes
+1,"According to Klesel and Wittmann, what share of employees are dissatisfied with enterprise search interfaces?",in_kb,79% (Cleverley and Burnett 2019),klesel_2025_rag_catchword.pdf p. 1,"2025 paper, plain LLM can't know. Simple fact"
+2,How does the Procedia survey classify RAG applications?,in_kb,Task-based and discipline-based classification,procedia_2024_rag_llm_survey.pdf p. 3,2024 paper. Plain LLM likely gives a generic answer
+3,What is the default embedding model in ChromaDB?,in_kb,all-MiniLM-L6-v2,Chroma docs: embedding-functions,Web page. Simple fact
+4,What are the two components of the original RAG model?,in_kb,Pre-trained retriever (DPR) + seq2seq generator (BART),lewis_2020_rag_original.pdf p. 2,PDF. Simple fact; plain LLM probably knows it (good baseline)
+5,How does RAG-Sequence differ from RAG-Token?,in_kb,RAG-Sequence uses the same retrieved document for the whole output sequence; RAG-Token can use a different document for each token,lewis_2020_rag_original.pdf p. 3,PDF. Comparison question
+6,"Which paper introduced RAG, and according to the IBM video, when should you choose RAG over fine-tuning?",in_kb,"Lewis et al. 2020; RAG for dynamic, frequently updated data and when transparency/sources matter (fine-tuning for domain-specific language and faster, cheaper inference)","lewis_2020_rag_original.pdf p. 1 + IBM Technology: RAG vs. Fine-Tuning, ~3:48-4:12",Needs two sources combined (PDF + video)
+7,What is the capital of Australia?,out_of_kb,Should say I don't know,,Unrelated. Plain LLM will answer (Canberra)
+8,Who wrote the novel Pride and Prejudice?,out_of_kb,Should say I don't know,,Unrelated. Plain LLM will answer (Jane Austen)
+9,How much does Pinecone's enterprise plan cost per month?,out_of_kb,Should say I don't know,,"RAG-related, tempts hallucination. Pinecone is not mentioned in any document"
+10,Which RAG framework did Microsoft release in 2026?,out_of_kb,Should say I don't know,,"RAG-related, beyond Llama 3.1 knowledge. Klesel p. 1-2 mentions Microsoft only as an LLM vendor, so retrieval may return it: good test that the model still says I don't know"
