@@ -1,0 +1,4 @@
+   # What RAG is
+   https://www.youtube.com/watch?v=T-D1OfcDW1M | IBM Technology: What is RAG?
+   # When to use RAG vs. fine-tuning
+   https://www.youtube.com/watch?v=00Q0G84kq3M | IBM Technology: RAG vs. Fine-Tuning

@@ -1,0 +1,52 @@
+"""
+config.py - Shared settings for the RAG pipeline.
+
+Every script (ingest, chain, app, evaluation) imports from here, so the
+embedding model, database location and chunk settings are always identical.
+"""
+import os
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+# --- Data locations ---------------------------------------------------------
+DATA_DIR = "data"
+PDF_DIR = os.path.join(DATA_DIR, "pdfs")
+URLS_FILE = os.path.join(DATA_DIR, "urls.txt")
+YOUTUBE_FILE = os.path.join(DATA_DIR, "youtube.txt")
+
+# --- Vector database ----------------------------------------------------------
+CHROMA_DIR = "chroma_db"
+COLLECTION_NAME = "rag_docs"
+
+# --- Models -----------------------------------------------------------------
+# all-MiniLM-L6-v2: 384-dimensional sentence embeddings, small and fast, runs
+# fine on CPU. Note: it only reads the first ~256 tokens (~1000 characters)
+# of a chunk, so chunks much longer than that get cut off when embedded.
+EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.1:8b")
+
+# --- Chunking (in characters), per document type -------------------------------
+# Starting values. Tune them with the chunking experiments and explain the
+# final choice in the presentation.
+CHUNK_SETTINGS = {
+    "pdf": {"chunk_size": 1000, "chunk_overlap": 150},      # dense academic text
+    "web": {"chunk_size": 800, "chunk_overlap": 100},       # shorter sections, more noise
+    "youtube": {"chunk_size": 1000, "chunk_overlap": 100},  # ~60 s transcript windows
+}
+
+# Length of one YouTube transcript window in seconds (keeps timestamps for citations)
+YOUTUBE_WINDOW_SECONDS = 60
+
+
+def get_embeddings():
+    """Return the embedding model used for both indexing and querying."""
+    from langchain_huggingface import HuggingFaceEmbeddings
+
+    # Normalised vectors -> L2 distance and cosine similarity give the same ranking
+    # (squared L2 distance = 2 - 2 * cosine similarity).
+    return HuggingFaceEmbeddings(
+        model_name=EMBEDDING_MODEL,
+        encode_kwargs={"normalize_embeddings": True},
+    )

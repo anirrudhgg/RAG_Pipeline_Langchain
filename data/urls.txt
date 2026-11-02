@@ -1,0 +1,8 @@
+# General overview of RAG
+https://en.wikipedia.org/wiki/Retrieval-augmented_generation
+# LangChain: RAG concepts (loaders, splitters, embeddings, vector stores, retrievers, RAG architectures)
+https://docs.langchain.com/oss/python/langchain/retrieval
+# ChromaDB: how embedding functions work
+https://docs.trychroma.com/docs/embeddings/embedding-functions
+# ChromaDB: HNSW index and distance functions (cosine, L2, inner product)
+https://docs.trychroma.com/docs/collections/configure
