@@ -1,0 +1,6 @@
+﻿mode,out_of_kb: correctly refused,in_kb: wrongly refused,avg total time (s),avg generation time (s),in_kb: answers with a citation,in_kb: expected sources retrieved,avg retrieval time (ms)
+plain,2/4,2/6,0.77,0.77,,,
+rag: Zero-shot,4/4,1/6,0.62,0.6,4/5,6/7,12.0
+rag: Few-shot,4/4,1/6,0.68,0.67,5/5,6/7,7.0
+rag: Chain-of-thought,4/4,1/6,2.08,2.07,5/5,6/7,7.0
+rag: Tree-of-thoughts,2/4,0/6,4.53,4.52,6/6,6/7,8.0

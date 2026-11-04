@@ -1,0 +1,592 @@
+﻿id,question,category,expected_answer,expected_source,mode,answer,full_response,dont_know,cited_any,expected_sources_retrieved,expected_sources_total,retrieved_sources,cited_sources,retrieval_ms,generation_ms,total_ms,label
+1,"According to Klesel and Wittmann, what share of employees are dissatisfied with enterprise search interfaces?",in_kb,79% (Cleverley and Burnett 2019),klesel_2025_rag_catchword.pdf p. 1,plain,I don't have information on what Klesel and Wittmann said about the share of employees dissatisfied with enterprise search interfaces.,I don't have information on what Klesel and Wittmann said about the share of employees dissatisfied with enterprise search interfaces.,True,,,,,,,273,273,
+1,"According to Klesel and Wittmann, what share of employees are dissatisfied with enterprise search interfaces?",in_kb,79% (Cleverley and Burnett 2019),klesel_2025_rag_catchword.pdf p. 1,rag: Zero-shot,79% of employees are dissatisfied with the user interfaces of enterprise search systems [1].,79% of employees are dissatisfied with the user interfaces of enterprise search systems [1].,False,True,1.0,1.0,"[1] klesel_2025_rag_catchword.pdf, p. 1 ; [2] lewis_2020_rag_original.pdf, p. 10 ; [3] gao_2025_rag_reasoning_review.pdf, p. 25 ; [4] IBM Technology: RAG vs. Fine-Tuning, at 0:00 ; [5] klesel_2025_rag_catchword.pdf, p. 7 ; [6] procedia_2024_rag_llm_survey.pdf, p. 1","[1] klesel_2025_rag_catchword.pdf, p. 1",47.0,219,269,
+1,"According to Klesel and Wittmann, what share of employees are dissatisfied with enterprise search interfaces?",in_kb,79% (Cleverley and Burnett 2019),klesel_2025_rag_catchword.pdf p. 1,rag: Few-shot,"According to [1] (klesel_2025_rag_catchword.pdf, p. 1), studies have shown that 79% of employees are dissatisfied with the user interfaces of enterprise search systems.","According to [1] (klesel_2025_rag_catchword.pdf, p. 1), studies have shown that 79% of employees are dissatisfied with the user interfaces of enterprise search systems.",False,True,1.0,1.0,"[1] klesel_2025_rag_catchword.pdf, p. 1 ; [2] lewis_2020_rag_original.pdf, p. 10 ; [3] gao_2025_rag_reasoning_review.pdf, p. 25 ; [4] IBM Technology: RAG vs. Fine-Tuning, at 0:00 ; [5] klesel_2025_rag_catchword.pdf, p. 7 ; [6] procedia_2024_rag_llm_survey.pdf, p. 1","[1] klesel_2025_rag_catchword.pdf, p. 1",7.0,761,771,
+1,"According to Klesel and Wittmann, what share of employees are dissatisfied with enterprise search interfaces?",in_kb,79% (Cleverley and Burnett 2019),klesel_2025_rag_catchword.pdf p. 1,rag: Chain-of-thought,79% [1],"1. The relevant sources for this question are [1] and [5] (klesel_2025_rag_catchword.pdf).
+2. [1] states that ""studies have shown that 79% of employees are dissatisfied with the user interfaces of enterprise search systems"" (Cleverley and Burnett 2019).
+3. [5] does not mention the share of employees dissatisfied with enterprise search interfaces.
+4. There are no other sources that provide this information.
+5. Since [1] provides the answer, there is no gap or contradiction.
+
+Answer: 79% [1]",False,True,1.0,1.0,"[1] klesel_2025_rag_catchword.pdf, p. 1 ; [2] lewis_2020_rag_original.pdf, p. 10 ; [3] gao_2025_rag_reasoning_review.pdf, p. 25 ; [4] IBM Technology: RAG vs. Fine-Tuning, at 0:00 ; [5] klesel_2025_rag_catchword.pdf, p. 7 ; [6] procedia_2024_rag_llm_survey.pdf, p. 1","[1] klesel_2025_rag_catchword.pdf, p. 1",7.0,1255,1265,
+1,"According to Klesel and Wittmann, what share of employees are dissatisfied with enterprise search interfaces?",in_kb,79% (Cleverley and Burnett 2019),klesel_2025_rag_catchword.pdf p. 1,rag: Tree-of-thoughts,Studies have shown that 79% of employees are dissatisfied with the user interfaces of enterprise search systems [1].,"Here are the 3 distinct ways to answer the question:
+
+**Branch A**
+1. Rely on source [1] for the information about employee dissatisfaction with enterprise search interfaces.
+2. According to source [1], studies have shown that 79% of employees are dissatisfied with the user interfaces of enterprise search systems.
+
+**Branch B**
+1. Rely on source [5] for the information about the benefits of RAG, which might indirectly relate to employee satisfaction.
+2. However, source [5] does not provide any information about employee dissatisfaction with enterprise search interfaces.
+
+**Branch C**
+1. Rely on source [4] for the general discussion about the limitations of generative AI, which might be related to employee satisfaction.
+2. However, source [4] does not provide any specific information about the share of employees dissatisfied with enterprise search interfaces.
+
+Evaluation:
+
+* Branch A: 10/10 (directly supported by source [1])
+* Branch B: 1/10 (does not provide any relevant information)
+* Branch C: 1/10 (does not provide any relevant information)
+
+Since Branch A is the strongest, I will expand it into a full answer.
+
+**Full Answer**
+
+According to source [1], studies have shown that 79% of employees are dissatisfied with the user interfaces of enterprise search systems [1]. This information is directly related to the question about employee dissatisfaction with enterprise search interfaces.
+
+Answer: Studies have shown that 79% of employees are dissatisfied with the user interfaces of enterprise search systems [1].",False,True,1.0,1.0,"[1] klesel_2025_rag_catchword.pdf, p. 1 ; [2] lewis_2020_rag_original.pdf, p. 10 ; [3] gao_2025_rag_reasoning_review.pdf, p. 25 ; [4] IBM Technology: RAG vs. Fine-Tuning, at 0:00 ; [5] klesel_2025_rag_catchword.pdf, p. 7 ; [6] procedia_2024_rag_llm_survey.pdf, p. 1","[1] klesel_2025_rag_catchword.pdf, p. 1",7.0,2986,2996,
+2,How does the Procedia survey classify RAG applications?,in_kb,Task-based and discipline-based classification,procedia_2024_rag_llm_survey.pdf p. 3,plain,"I don't have access to the specific Procedia survey you're referring to. However, I can provide general information on how RAG (Red-Amber-Green) applications are typically classified.
+
+In general, RAG applications are classified based on their status or priority level, which is often represented by a color-coded system:
+
+1.  **Red (R):** Indicates a critical or high-priority issue that requires immediate attention.
+2.  **Amber (A):** Represents a medium-priority issue that needs to be addressed within a specific timeframe.
+3.  **Green (G):** Signifies a low-priority or completed issue that does not require further action.
+
+Please note that the specific classification and color-coding may vary depending on the context, organization, or survey in question. If you could provide more information about the Procedia survey you're referring to, I may be able to offer more tailored guidance.","I don't have access to the specific Procedia survey you're referring to. However, I can provide general information on how RAG (Red-Amber-Green) applications are typically classified.
+
+In general, RAG applications are classified based on their status or priority level, which is often represented by a color-coded system:
+
+1.  **Red (R):** Indicates a critical or high-priority issue that requires immediate attention.
+2.  **Amber (A):** Represents a medium-priority issue that needs to be addressed within a specific timeframe.
+3.  **Green (G):** Signifies a low-priority or completed issue that does not require further action.
+
+Please note that the specific classification and color-coding may vary depending on the context, organization, or survey in question. If you could provide more information about the Procedia survey you're referring to, I may be able to offer more tailored guidance.",False,,,,,,,1741,1741,
+2,How does the Procedia survey classify RAG applications?,in_kb,Task-based and discipline-based classification,procedia_2024_rag_llm_survey.pdf p. 3,rag: Zero-shot,"According to [3], the Procedia survey classifies RAG applications into categories such as Educational, Technology and Software Development, Social and Communication, Literature, and Other Categories. Within these categories, ""software development"" stands out as a common category, encompassing systems for developing various applications across different domains.
+
+The survey also classifies RAG applications based on the specific nature of the NLP tasks they tackle, as shown in Table 2 and Fig. 4 in [6]. The tasks include QA, clinical writing, and pharmaceutical regulatory compliance inquiries, among others.
+
+The survey further classifies RAG applications across different disciplines, as shown in Table 3 and Fig. 5 in [6]. The disciplines include Medical/Biomedical, Financial, Educational, Technology and Software Development, Social and Communication, and Literature.
+
+The part of the question that the sources do not cover is how the Procedia survey classifies RAG applications in terms of their accuracy or reliability.","According to [3], the Procedia survey classifies RAG applications into categories such as Educational, Technology and Software Development, Social and Communication, Literature, and Other Categories. Within these categories, ""software development"" stands out as a common category, encompassing systems for developing various applications across different domains.
+
+The survey also classifies RAG applications based on the specific nature of the NLP tasks they tackle, as shown in Table 2 and Fig. 4 in [6]. The tasks include QA, clinical writing, and pharmaceutical regulatory compliance inquiries, among others.
+
+The survey further classifies RAG applications across different disciplines, as shown in Table 3 and Fig. 5 in [6]. The disciplines include Medical/Biomedical, Financial, Educational, Technology and Software Development, Social and Communication, and Literature.
+
+The part of the question that the sources do not cover is how the Procedia survey classifies RAG applications in terms of their accuracy or reliability.",False,True,1.0,1.0,"[1] procedia_2024_rag_llm_survey.pdf, p. 2 ; [2] procedia_2024_rag_llm_survey.pdf, p. 6 ; [3] procedia_2024_rag_llm_survey.pdf, p. 3-4 ; [4] procedia_2024_rag_llm_survey.pdf, p. 6-7 ; [5] klesel_2025_rag_catchword.pdf, p. 6 ; [6] procedia_2024_rag_llm_survey.pdf, p. 4","[3] procedia_2024_rag_llm_survey.pdf, p. 3-4 ; [6] procedia_2024_rag_llm_survey.pdf, p. 4",7.0,1884,1894,
+2,How does the Procedia survey classify RAG applications?,in_kb,Task-based and discipline-based classification,procedia_2024_rag_llm_survey.pdf p. 3,rag: Few-shot,"The Procedia survey classifies RAG applications based on their specific nature, categorizing them into task-based and discipline-based studies [3]. Task-based classification is presented in Table 2 and Fig. 4, with categories such as QA, Text Generation and Summarization, Information Retrieval and Extraction, and others [6]. Discipline-based classification is shown in Table 3 and Fig. 5, with categories such as Medical/Biomedical, Technology and Software Development, Social and Communication, and others [6]. The survey also highlights the distribution and focus of RAG applications across different NLP tasks and disciplines [6]. 
+
+Note: The sources do not cover the classification of RAG applications in terms of their accuracy or reliability, which is mentioned in [2] as a future work direction.","The Procedia survey classifies RAG applications based on their specific nature, categorizing them into task-based and discipline-based studies [3]. Task-based classification is presented in Table 2 and Fig. 4, with categories such as QA, Text Generation and Summarization, Information Retrieval and Extraction, and others [6]. Discipline-based classification is shown in Table 3 and Fig. 5, with categories such as Medical/Biomedical, Technology and Software Development, Social and Communication, and others [6]. The survey also highlights the distribution and focus of RAG applications across different NLP tasks and disciplines [6]. 
+
+Note: The sources do not cover the classification of RAG applications in terms of their accuracy or reliability, which is mentioned in [2] as a future work direction.",False,True,1.0,1.0,"[1] procedia_2024_rag_llm_survey.pdf, p. 2 ; [2] procedia_2024_rag_llm_survey.pdf, p. 6 ; [3] procedia_2024_rag_llm_survey.pdf, p. 3-4 ; [4] procedia_2024_rag_llm_survey.pdf, p. 6-7 ; [5] klesel_2025_rag_catchword.pdf, p. 6 ; [6] procedia_2024_rag_llm_survey.pdf, p. 4","[2] procedia_2024_rag_llm_survey.pdf, p. 6 ; [3] procedia_2024_rag_llm_survey.pdf, p. 3-4 ; [6] procedia_2024_rag_llm_survey.pdf, p. 4",7.0,1606,1615,
+2,How does the Procedia survey classify RAG applications?,in_kb,Task-based and discipline-based classification,procedia_2024_rag_llm_survey.pdf p. 3,rag: Chain-of-thought,"The Procedia survey classifies RAG applications based on both task-specific and discipline-specific studies, and categorizes them into various NLP tasks and disciplines, including QA, Text Generation and Summarization, Information Retrieval and Extraction, and others, as well as disciplines such as Medical/Biomedical, Technology and Software Development, and Social and Communication [1][3][4][6].","1. Relevant sources are [1], [3], [4], and [6]. 
+2. [1] mentions that the paper aims to provide an exhaustive overview of RAG applications, including both task-specific and discipline-specific studies. 
+3. [3] states that the categories are selected based on an understanding of the context of the studies and the underlying problems they address. 
+4. [4] mentions that the majority of research applications are concentrated in the fields of Medical/Biomedical and Technology and Software Development. 
+5. [6] provides a classification of RAG applications based on the specific nature of the NLP tasks they tackle, including QA, Text Generation and Summarization, Information Retrieval and Extraction, and others. 
+6. [6] also mentions that further classification reveals that 9 publications were related to Medical/Biomedical, 2 to Financial, 2 to Educational, 9 to Technology and Software Development, 7 to Social and Communication, and 3 to Literature.
+
+The Procedia survey classifies RAG applications based on both task-specific and discipline-specific studies, and categorizes them into various NLP tasks and disciplines. The classification includes categories such as QA, Text Generation and Summarization, Information Retrieval and Extraction, and others, as well as disciplines such as Medical/Biomedical, Technology and Software Development, and Social and Communication.
+
+Answer: The Procedia survey classifies RAG applications based on both task-specific and discipline-specific studies, and categorizes them into various NLP tasks and disciplines, including QA, Text Generation and Summarization, Information Retrieval and Extraction, and others, as well as disciplines such as Medical/Biomedical, Technology and Software Development, and Social and Communication [1][3][4][6].",False,True,1.0,1.0,"[1] procedia_2024_rag_llm_survey.pdf, p. 2 ; [2] procedia_2024_rag_llm_survey.pdf, p. 6 ; [3] procedia_2024_rag_llm_survey.pdf, p. 3-4 ; [4] procedia_2024_rag_llm_survey.pdf, p. 6-7 ; [5] klesel_2025_rag_catchword.pdf, p. 6 ; [6] procedia_2024_rag_llm_survey.pdf, p. 4","[1] procedia_2024_rag_llm_survey.pdf, p. 2 ; [3] procedia_2024_rag_llm_survey.pdf, p. 3-4 ; [4] procedia_2024_rag_llm_survey.pdf, p. 6-7 ; [6] procedia_2024_rag_llm_survey.pdf, p. 4",8.0,3475,3485,
+2,How does the Procedia survey classify RAG applications?,in_kb,Task-based and discipline-based classification,procedia_2024_rag_llm_survey.pdf p. 3,rag: Tree-of-thoughts,"The Procedia survey classifies RAG applications based on their discipline-based classification, revealing that 9 publications were related to Medical/Biomedical, 2 to Financial, 2 to Educational, 9 to Technology and Software Development, 7 to Social and Communication, and 3 to Literature, with the remaining falling into ""Other Categories"". [6]","Here are the distinct ways to answer the question:
+
+**Branch A**: The Procedia survey classifies RAG applications based on their task-based classification.
+
+**Branch B**: The Procedia survey classifies RAG applications based on their discipline-based classification.
+
+**Branch C**: The Procedia survey classifies RAG applications based on their specific nature of the NLP tasks they tackle.
+
+Let's work through each branch:
+
+**Branch A**
+
+1. The Procedia survey classifies RAG applications based on their task-based classification. [1]
+2. The survey categorizes RAG applications based on the specific nature of the NLP tasks they tackle (see Table 2 and Fig. 4). [6]
+
+Evaluation: 8/10. This branch relies on two sources, but the first source is a general statement, and the second source provides more specific information about the classification.
+
+**Branch B**
+
+1. The Procedia survey classifies RAG applications based on their discipline-based classification. [1]
+2. The survey categorizes RAG applications based on their discipline, revealing that 9 publications were related to Medical/Biomedical, 2 to Financial, 2 to Educational, 9 to Technology and Software Development, 7 to Social and Communication, and 3 to Literature, with the remaining falling into ""Other Categories"". [6]
+
+Evaluation: 9/10. This branch relies on two sources, and the second source provides specific information about the discipline-based classification.
+
+**Branch C**
+
+1. The Procedia survey classifies RAG applications based on their specific nature of the NLP tasks they tackle. [6]
+2. The survey categorizes RAG applications based on the specific nature of the NLP tasks they tackle (see Table 2 and Fig. 4). [6]
+
+Evaluation: 6/10. This branch relies on only one source, and the information is not as specific as Branch B.
+
+After evaluating the branches, I discard Branch C and Branch A, and expand Branch B into a full answer.
+
+**Final Answer**
+
+Answer: The Procedia survey classifies RAG applications based on their discipline-based classification, revealing that 9 publications were related to Medical/Biomedical, 2 to Financial, 2 to Educational, 9 to Technology and Software Development, 7 to Social and Communication, and 3 to Literature, with the remaining falling into ""Other Categories"". [6]",False,True,1.0,1.0,"[1] procedia_2024_rag_llm_survey.pdf, p. 2 ; [2] procedia_2024_rag_llm_survey.pdf, p. 6 ; [3] procedia_2024_rag_llm_survey.pdf, p. 3-4 ; [4] procedia_2024_rag_llm_survey.pdf, p. 6-7 ; [5] klesel_2025_rag_catchword.pdf, p. 6 ; [6] procedia_2024_rag_llm_survey.pdf, p. 4","[6] procedia_2024_rag_llm_survey.pdf, p. 4",7.0,4857,4867,
+3,What is the default embedding model in ChromaDB?,in_kb,all-MiniLM-L6-v2,Chroma docs: embedding-functions,plain,"I don't have the specific information about the default embedding model in ChromaDB. If you're looking for detailed technical specifications or implementation details of ChromaDB, I recommend consulting the official documentation or resources related to ChromaDB for the most accurate and up-to-date information.","I don't have the specific information about the default embedding model in ChromaDB. If you're looking for detailed technical specifications or implementation details of ChromaDB, I recommend consulting the official documentation or resources related to ChromaDB for the most accurate and up-to-date information.",True,,,,,,,547,547,
+3,What is the default embedding model in ChromaDB?,in_kb,all-MiniLM-L6-v2,Chroma docs: embedding-functions,rag: Zero-shot,The default embedding model in ChromaDB is the Sentence Transformers all-MiniLM-L6-v2 model [1][2].,The default embedding model in ChromaDB is the Sentence Transformers all-MiniLM-L6-v2 model [1][2].,False,True,1.0,1.0,"[1] Embedding Functions - Chroma Docs ; [2] Embedding Functions - Chroma Docs ; [3] Configure Collections - Chroma Docs ; [4] klesel_2025_rag_catchword.pdf, p. 3",[1] Embedding Functions - Chroma Docs ; [2] Embedding Functions - Chroma Docs,7.0,288,298,
+3,What is the default embedding model in ChromaDB?,in_kb,all-MiniLM-L6-v2,Chroma docs: embedding-functions,rag: Few-shot,The default embedding model in ChromaDB is the Sentence Transformers all-MiniLM-L6-v2 model [1][2].,The default embedding model in ChromaDB is the Sentence Transformers all-MiniLM-L6-v2 model [1][2].,False,True,1.0,1.0,"[1] Embedding Functions - Chroma Docs ; [2] Embedding Functions - Chroma Docs ; [3] Configure Collections - Chroma Docs ; [4] klesel_2025_rag_catchword.pdf, p. 3",[1] Embedding Functions - Chroma Docs ; [2] Embedding Functions - Chroma Docs,7.0,547,555,
+3,What is the default embedding model in ChromaDB?,in_kb,all-MiniLM-L6-v2,Chroma docs: embedding-functions,rag: Chain-of-thought,Chroma's default embedding model is the Sentence Transformers all-MiniLM-L6-v2 model. [1][2],"1. Relevant sources are [1] and [2].
+2. [1] states that Chroma's default embedding function uses the Sentence Transformers all-MiniLM-L6-v2 model to create embeddings.
+3. [2] also mentions that Chroma's default embedding function uses the Sentence Transformers all-MiniLM-L6-v2 model to create embeddings.
+4. There are no gaps or contradictions in the information provided by the sources.
+
+Answer: Chroma's default embedding model is the Sentence Transformers all-MiniLM-L6-v2 model. [1][2]",False,True,1.0,1.0,"[1] Embedding Functions - Chroma Docs ; [2] Embedding Functions - Chroma Docs ; [3] Configure Collections - Chroma Docs ; [4] klesel_2025_rag_catchword.pdf, p. 3",[1] Embedding Functions - Chroma Docs ; [2] Embedding Functions - Chroma Docs,7.0,1161,1170,
+3,What is the default embedding model in ChromaDB?,in_kb,all-MiniLM-L6-v2,Chroma docs: embedding-functions,rag: Tree-of-thoughts,** The default embedding model in ChromaDB is the all-MiniLM-L6-v2 model [1].,"Here are the three distinct ways to answer the question:
+
+**Branch A**
+This branch relies on the fact that the default embedding function in Chroma is the DefaultEmbeddingFunction, which uses the Sentence Transformers all-MiniLM-L6-v2 model to create embeddings.
+
+**Branch B**
+This branch focuses on the fact that the default embedding function in Chroma is the DefaultEmbeddingFunction, and it uses the all-MiniLM-L6-v2 model to create embeddings.
+
+**Branch C**
+This branch looks at the fact that the default embedding function in Chroma is the DefaultEmbeddingFunction, and it uses the Sentence Transformers all-MiniLM-L6-v2 model to create embeddings.
+
+**Evaluation**
+
+* Branch A: 8/10 (it's a bit of a stretch to say that the default embedding function uses the all-MiniLM-L6-v2 model, as it's not explicitly stated in the source)
+* Branch B: 9/10 (this branch is a good interpretation of the source, but it's not as direct as Branch C)
+* Branch C: 10/10 (this branch is a direct and clear interpretation of the source)
+
+**Expansion of Branch C**
+
+The default embedding function in Chroma is the DefaultEmbeddingFunction [1]. This function uses the Sentence Transformers all-MiniLM-L6-v2 model to create embeddings [1]. Therefore, the default embedding model in ChromaDB is the all-MiniLM-L6-v2 model [1].
+
+**Self-check**
+
+Every statement in the answer is stated in a source I cite. The question is covered by the sources.
+
+**Answer:** The default embedding model in ChromaDB is the all-MiniLM-L6-v2 model [1].",False,True,1.0,1.0,"[1] Embedding Functions - Chroma Docs ; [2] Embedding Functions - Chroma Docs ; [3] Configure Collections - Chroma Docs ; [4] klesel_2025_rag_catchword.pdf, p. 3",[1] Embedding Functions - Chroma Docs,9.0,3308,3320,
+4,What are the two components of the original RAG model?,in_kb,Pre-trained retriever (DPR) + seq2seq generator (BART),lewis_2020_rag_original.pdf p. 2,plain,"The two components of the original RAG model are:
+
+1. **R**ecognition: This component involves the ability to recognize and identify the problem or opportunity.
+2. **A**ction: This component involves the ability to take action and implement a solution to the problem or capitalize on the opportunity.
+
+The RAG model is a simple and effective framework for decision-making and problem-solving, and it has been widely used in various fields, including business, management, and personal development.","The two components of the original RAG model are:
+
+1. **R**ecognition: This component involves the ability to recognize and identify the problem or opportunity.
+2. **A**ction: This component involves the ability to take action and implement a solution to the problem or capitalize on the opportunity.
+
+The RAG model is a simple and effective framework for decision-making and problem-solving, and it has been widely used in various fields, including business, management, and personal development.",False,,,,,,,921,921,
+4,What are the two components of the original RAG model?,in_kb,Pre-trained retriever (DPR) + seq2seq generator (BART),lewis_2020_rag_original.pdf p. 2,rag: Zero-shot,"According to [2], the two components of the original RAG model are:
+
+1. A retriever pη(z|x) that returns (top-K truncated) distributions over text passages given a query x.
+2. A generator pθ(yi|x,z,y1:i−1) that generates a current token based on a context of the previous i−1 tokens y1:i−1, the original input x, and a retrieved passage z.
+
+These components are described in Section 2.1 of [2].","According to [2], the two components of the original RAG model are:
+
+1. A retriever pη(z|x) that returns (top-K truncated) distributions over text passages given a query x.
+2. A generator pθ(yi|x,z,y1:i−1) that generates a current token based on a context of the previous i−1 tokens y1:i−1, the original input x, and a retrieved passage z.
+
+These components are described in Section 2.1 of [2].",False,True,1.0,1.0,"[1] fan_2024_rag_meets_llms_survey.pdf, p. 3 ; [2] lewis_2020_rag_original.pdf, p. 2-3 ; [3] klesel_2025_rag_catchword.pdf, p. 4 ; [4] klesel_2025_rag_catchword.pdf, p. 6 ; [5] IBM Technology: What is RAG?, at 5:41","[2] lewis_2020_rag_original.pdf, p. 2-3",7.0,1039,1049,
+4,What are the two components of the original RAG model?,in_kb,Pre-trained retriever (DPR) + seq2seq generator (BART),lewis_2020_rag_original.pdf p. 2,rag: Few-shot,"The two components of the original RAG model are:
+
+(i) a retriever pη(z|x) with parameters η that returns (top-K truncated) distributions over text passages given a query x [2], and
+(ii) a generator pθ(yi|x,z,y1:i−1) parametrized by θ that generates a current token based on a context of the previous i−1 tokens y1:i−1, the original input x, and a retrieved passage z [2].","The two components of the original RAG model are:
+
+(i) a retriever pη(z|x) with parameters η that returns (top-K truncated) distributions over text passages given a query x [2], and
+(ii) a generator pθ(yi|x,z,y1:i−1) parametrized by θ that generates a current token based on a context of the previous i−1 tokens y1:i−1, the original input x, and a retrieved passage z [2].",False,True,1.0,1.0,"[1] fan_2024_rag_meets_llms_survey.pdf, p. 3 ; [2] lewis_2020_rag_original.pdf, p. 2-3 ; [3] klesel_2025_rag_catchword.pdf, p. 4 ; [4] klesel_2025_rag_catchword.pdf, p. 6 ; [5] IBM Technology: What is RAG?, at 5:41","[2] lewis_2020_rag_original.pdf, p. 2-3",6.0,1018,1027,
+4,What are the two components of the original RAG model?,in_kb,Pre-trained retriever (DPR) + seq2seq generator (BART),lewis_2020_rag_original.pdf p. 2,rag: Chain-of-thought,"The two components of the original RAG model are a retriever pη(z|x) and a generator pθ(yi|x,z,y1:i−1). [2]","1. Relevant sources: [2] and [1] are not directly relevant to the question, but [2] mentions the two components of the RAG model, and [1] mentions the retriever and generator as components of RAG models, but not specifically the original RAG model.
+
+2. Combining the information: [2] mentions that the original RAG model leverages two components: (i) a retriever pη(z|x) with parameters η that returns (top-K truncated) distributions over text passages given a query x and (ii) a generator pθ(yi|x,z,y1:i−1) parametrized by θ that generates a current token based on a context of the previous i−1 tokens y1:i−1, the original input x and a retrieved passage z.
+
+3. There are no gaps or contradictions in the information provided by [2].
+
+Answer: The two components of the original RAG model are a retriever pη(z|x) and a generator pθ(yi|x,z,y1:i−1). [2]",False,True,1.0,1.0,"[1] fan_2024_rag_meets_llms_survey.pdf, p. 3 ; [2] lewis_2020_rag_original.pdf, p. 2-3 ; [3] klesel_2025_rag_catchword.pdf, p. 4 ; [4] klesel_2025_rag_catchword.pdf, p. 6 ; [5] IBM Technology: What is RAG?, at 5:41","[2] lewis_2020_rag_original.pdf, p. 2-3",7.0,2115,2124,
+4,What are the two components of the original RAG model?,in_kb,Pre-trained retriever (DPR) + seq2seq generator (BART),lewis_2020_rag_original.pdf p. 2,rag: Tree-of-thoughts,"The original RAG model consists of a retriever and a generator, which are used to retrieve relevant documents and generate the target sequence, respectively [2]. The retriever is used to return top-K truncated distributions over text passages given a query, while the generator produces a current token based on a context of the previous tokens, the original input, and a retrieved passage [2].","Here are the three distinct ways to answer the question:
+
+**Branch A**
+1. The original RAG model consists of a retriever and a generator, which are used to retrieve relevant documents and generate the target sequence, respectively [2].
+2. The retriever is used to return top-K truncated distributions over text passages given a query, while the generator produces a current token based on a context of the previous tokens, the original input, and a retrieved passage [2].
+3. The two components of the original RAG model are the retriever and the generator, which work together to generate the target sequence [2].
+
+**Branch B**
+1. The original RAG model has two components: a retriever that returns (top-K truncated) distributions over text passages given a query, and a generator that generates a current token based on a context of the previous tokens, the original input, and a retrieved passage [2].
+2. The retriever and generator are used to produce a distribution over generated text, with the retriever returning a set of relevant documents and the generator generating the target sequence based on these documents [2].
+3. The two components of the original RAG model are the retriever and the generator, which are used to retrieve relevant documents and generate the target sequence, respectively [2].
+
+**Branch C**
+1. The original RAG model consists of a retriever and a generator, which are used to retrieve relevant documents and generate the target sequence, respectively [1].
+2. The retriever is used to embed the query and documents into a continuous vector space with certain criteria, such as semantic similarity [1].
+3. The two components of the original RAG model are the retriever and the generator, which work together to generate the target sequence [1].
+
+Evaluation:
+
+* Branch A: 9/10 (directly supported by source [2])
+* Branch B: 9/10 (directly supported by source [2])
+* Branch C: 4/10 (relying on interpretation of source [1])
+
+Discarding weak Branch C, we expand the best Branch A into a full answer:
+
+Answer: The original RAG model consists of a retriever and a generator, which are used to retrieve relevant documents and generate the target sequence, respectively [2]. The retriever is used to return top-K truncated distributions over text passages given a query, while the generator produces a current token based on a context of the previous tokens, the original input, and a retrieved passage [2].",False,True,1.0,1.0,"[1] fan_2024_rag_meets_llms_survey.pdf, p. 3 ; [2] lewis_2020_rag_original.pdf, p. 2-3 ; [3] klesel_2025_rag_catchword.pdf, p. 4 ; [4] klesel_2025_rag_catchword.pdf, p. 6 ; [5] IBM Technology: What is RAG?, at 5:41","[2] lewis_2020_rag_original.pdf, p. 2-3",7.0,4952,4962,
+5,How does RAG-Sequence differ from RAG-Token?,in_kb,RAG-Sequence uses the same retrieved document for the whole output sequence; RAG-Token can use a different document for each token,lewis_2020_rag_original.pdf p. 3,plain,"RAG-Sequence and RAG-Token are two different approaches used in the context of the RAG (Recurrent Attention-Generative) model, a type of generative model that combines the strengths of attention mechanisms and generative models.
+
+RAG-Sequence and RAG-Token differ in how they process input sequences and generate outputs:
+
+1.  **RAG-Sequence:**
+
+    *   RAG-Sequence processes input sequences as a whole, where the input is a sequence of tokens (e.g., words or characters).
+    *   It uses a sequence-level attention mechanism to focus on specific parts of the input sequence when generating the output.
+    *   The output is also a sequence of tokens.
+2.  **RAG-Token:**
+
+    *   RAG-Token processes input sequences token by token, where each token is processed independently.
+    *   It uses a token-level attention mechanism to focus on specific tokens in the input sequence when generating the output.
+    *   The output is also a sequence of tokens.
+
+In summary, RAG-Sequence processes input sequences as a whole and generates output sequences, while RAG-Token processes input sequences token by token and generates output sequences.","RAG-Sequence and RAG-Token are two different approaches used in the context of the RAG (Recurrent Attention-Generative) model, a type of generative model that combines the strengths of attention mechanisms and generative models.
+
+RAG-Sequence and RAG-Token differ in how they process input sequences and generate outputs:
+
+1.  **RAG-Sequence:**
+
+    *   RAG-Sequence processes input sequences as a whole, where the input is a sequence of tokens (e.g., words or characters).
+    *   It uses a sequence-level attention mechanism to focus on specific parts of the input sequence when generating the output.
+    *   The output is also a sequence of tokens.
+2.  **RAG-Token:**
+
+    *   RAG-Token processes input sequences token by token, where each token is processed independently.
+    *   It uses a token-level attention mechanism to focus on specific tokens in the input sequence when generating the output.
+    *   The output is also a sequence of tokens.
+
+In summary, RAG-Sequence processes input sequences as a whole and generates output sequences, while RAG-Token processes input sequences token by token and generates output sequences.",False,,,,,,,2289,2289,
+5,How does RAG-Sequence differ from RAG-Token?,in_kb,RAG-Sequence uses the same retrieved document for the whole output sequence; RAG-Token can use a different document for each token,lewis_2020_rag_original.pdf p. 3,rag: Zero-shot,"RAG-Sequence and RAG-Token differ in their decoding methods. RAG-Token can be seen as a standard, autoregressive seq2seq generator [1, p. 4], whereas RAG-Sequence's likelihood does not break into a conventional per-token likelihood, requiring a different decoding approach [1, p. 4]. Specifically, RAG-Sequence runs beam search for each document, scoring each hypothesis using the generator's probability [1, p. 4]. This yields a set of hypotheses, some of which may not have appeared in the beams of all documents, requiring an additional forward pass to estimate the probability of each hypothesis [1, p. 4]. 
+
+The sources do not cover the part about the performance differences between RAG-Sequence and RAG-Token.","RAG-Sequence and RAG-Token differ in their decoding methods. RAG-Token can be seen as a standard, autoregressive seq2seq generator [1, p. 4], whereas RAG-Sequence's likelihood does not break into a conventional per-token likelihood, requiring a different decoding approach [1, p. 4]. Specifically, RAG-Sequence runs beam search for each document, scoring each hypothesis using the generator's probability [1, p. 4]. This yields a set of hypotheses, some of which may not have appeared in the beams of all documents, requiring an additional forward pass to estimate the probability of each hypothesis [1, p. 4]. 
+
+The sources do not cover the part about the performance differences between RAG-Sequence and RAG-Token.",False,False,1.0,1.0,"[1] lewis_2020_rag_original.pdf, p. 4 ; [2] lewis_2020_rag_original.pdf, p. 7 ; [3] lewis_2020_rag_original.pdf, p. 8 ; [4] lewis_2020_rag_original.pdf, p. 8 ; [5] procedia_2024_rag_llm_survey.pdf, p. 6 ; [6] IBM Technology: What is RAG?, at 5:41",,7.0,1525,1534,
+5,How does RAG-Sequence differ from RAG-Token?,in_kb,RAG-Sequence uses the same retrieved document for the whole output sequence; RAG-Token can use a different document for each token,lewis_2020_rag_original.pdf p. 3,rag: Few-shot,"RAG-Sequence and RAG-Token differ in their decoding methods. RAG-Token can be seen as a standard, autoregressive seq2seq generator [1]. In contrast, RAG-Sequence's likelihood does not break into a conventional per-token likelihood, so it cannot be solved with a single beam search [1]. Instead, RAG-Sequence runs beam search for each document, scoring each hypothesis using the likelihood of the document [1]. This yields a set of hypotheses, some of which may not have appeared in the beams of all documents [1]. 
+
+The sources do not cover the differences in performance or other aspects between RAG-Sequence and RAG-Token.","RAG-Sequence and RAG-Token differ in their decoding methods. RAG-Token can be seen as a standard, autoregressive seq2seq generator [1]. In contrast, RAG-Sequence's likelihood does not break into a conventional per-token likelihood, so it cannot be solved with a single beam search [1]. Instead, RAG-Sequence runs beam search for each document, scoring each hypothesis using the likelihood of the document [1]. This yields a set of hypotheses, some of which may not have appeared in the beams of all documents [1]. 
+
+The sources do not cover the differences in performance or other aspects between RAG-Sequence and RAG-Token.",False,True,1.0,1.0,"[1] lewis_2020_rag_original.pdf, p. 4 ; [2] lewis_2020_rag_original.pdf, p. 7 ; [3] lewis_2020_rag_original.pdf, p. 8 ; [4] lewis_2020_rag_original.pdf, p. 8 ; [5] procedia_2024_rag_llm_survey.pdf, p. 6 ; [6] IBM Technology: What is RAG?, at 5:41","[1] lewis_2020_rag_original.pdf, p. 4",8.0,1359,1370,
+5,How does RAG-Sequence differ from RAG-Token?,in_kb,RAG-Sequence uses the same retrieved document for the whole output sequence; RAG-Token can use a different document for each token,lewis_2020_rag_original.pdf p. 3,rag: Chain-of-thought,"RAG-Sequence differs from RAG-Token in its decoding process, as it does not break into a conventional per-token likelihood and instead uses beam search for each document, whereas RAG-Token uses a standard, autoregressive seq2seq generator with transition probability. [1]","1. Relevant sources for the question are [1] and [2].
+2. [1] explains the decoding process for RAG-Token and RAG-Sequence. For RAG-Token, it uses a standard, autoregressive seq2seq generator with transition probability, and can be decoded with a standard beam decoder. For RAG-Sequence, the likelihood does not break into a conventional per-token likelihood, and instead, beam search is run for each document, scoring each hypothesis using the generator.
+3. [2] mentions that RAG-Sequence's generations are more diverse than RAG-Token's, but does not provide information on how they differ in terms of decoding process.
+4. There are no contradictions or gaps in the information provided by the sources.
+
+Answer: RAG-Sequence differs from RAG-Token in its decoding process, as it does not break into a conventional per-token likelihood and instead uses beam search for each document, whereas RAG-Token uses a standard, autoregressive seq2seq generator with transition probability. [1]",False,True,1.0,1.0,"[1] lewis_2020_rag_original.pdf, p. 4 ; [2] lewis_2020_rag_original.pdf, p. 7 ; [3] lewis_2020_rag_original.pdf, p. 8 ; [4] lewis_2020_rag_original.pdf, p. 8 ; [5] procedia_2024_rag_llm_survey.pdf, p. 6 ; [6] IBM Technology: What is RAG?, at 5:41","[1] lewis_2020_rag_original.pdf, p. 4",7.0,2026,2035,
+5,How does RAG-Sequence differ from RAG-Token?,in_kb,RAG-Sequence uses the same retrieved document for the whole output sequence; RAG-Token can use a different document for each token,lewis_2020_rag_original.pdf p. 3,rag: Tree-of-thoughts,"RAG-Sequence differs from RAG-Token in the way they handle the output distribution, unlike RAG-Token, which can be seen as a standard, autoregressive seq2seq generator, RAG-Sequence's likelihood does not break into a conventional per-token likelihood, and it cannot solve it with a single beam search [1].","Here are the 3 distinct ways to answer the question:
+
+**Branch A**: RAG-Sequence differs from RAG-Token in the way they approximate the arg max of the output distribution.
+
+* Reasoning step 1: RAG-Sequence uses a different decoding method than RAG-Token. [1]
+* Reasoning step 2: RAG-Sequence runs beam search for each document, scoring each hypothesis using the generator's probability [1]
+
+**Branch B**: RAG-Sequence differs from RAG-Token in the way they handle the output distribution.
+
+* Reasoning step 1: RAG-Sequence's likelihood does not break into a conventional per-token likelihood, unlike RAG-Token. [1]
+* Reasoning step 2: RAG-Sequence cannot solve it with a single beam search, unlike RAG-Token. [1]
+
+**Branch C**: RAG-Sequence differs from RAG-Token in terms of generation diversity.
+
+* Reasoning step 1: RAG-Sequence's generations are more diverse than RAG-Token's, according to Table 5. [2]
+* Reasoning step 2: RAG-Sequence's diversity is significantly higher than BART's, without needing any diversity-promoting decoding. [2]
+
+Evaluation:
+
+* Branch A: 8/10 (supports the difference in decoding methods, but doesn't fully explain the difference)
+* Branch B: 9/10 (directly supports the difference in handling the output distribution)
+* Branch C: 2/10 (relies on a different aspect of the models, and the source doesn't fully explain the difference)
+
+Discarding weak branches, the best one is Branch B. Expanding it into a full answer:
+
+RAG-Sequence differs from RAG-Token in the way they handle the output distribution. Unlike RAG-Token, which can be seen as a standard, autoregressive seq2seq generator, RAG-Sequence's likelihood does not break into a conventional per-token likelihood. This means that RAG-Sequence cannot solve it with a single beam search, unlike RAG-Token. [1]
+
+Self-check: Every statement in this answer is stated in a source I cite.
+
+Answer: RAG-Sequence differs from RAG-Token in the way they handle the output distribution, unlike RAG-Token, which can be seen as a standard, autoregressive seq2seq generator, RAG-Sequence's likelihood does not break into a conventional per-token likelihood, and it cannot solve it with a single beam search [1].",False,True,1.0,1.0,"[1] lewis_2020_rag_original.pdf, p. 4 ; [2] lewis_2020_rag_original.pdf, p. 7 ; [3] lewis_2020_rag_original.pdf, p. 8 ; [4] lewis_2020_rag_original.pdf, p. 8 ; [5] procedia_2024_rag_llm_survey.pdf, p. 6 ; [6] IBM Technology: What is RAG?, at 5:41","[1] lewis_2020_rag_original.pdf, p. 4",9.0,4797,4807,
+6,"Which paper introduced RAG, and according to the IBM video, when should you choose RAG over fine-tuning?",in_kb,"Lewis et al. 2020; RAG for dynamic, frequently updated data and when transparency/sources matter (fine-tuning for domain-specific language and faster, cheaper inference)","lewis_2020_rag_original.pdf p. 1 + IBM Technology: RAG vs. Fine-Tuning, ~3:48-4:12",plain,"The paper that introduced RAG (Reinforced Actor-Guesser) is ""Reinforced Actor-Guesser: A Framework for Multi-Step Reasoning"" by Lewis et al. (2020).
+
+According to the IBM video, you should choose RAG over fine-tuning when you need to perform multi-step reasoning tasks, such as question answering, where the model needs to reason over multiple steps to arrive at the answer.","The paper that introduced RAG (Reinforced Actor-Guesser) is ""Reinforced Actor-Guesser: A Framework for Multi-Step Reasoning"" by Lewis et al. (2020).
+
+According to the IBM video, you should choose RAG over fine-tuning when you need to perform multi-step reasoning tasks, such as question answering, where the model needs to reason over multiple steps to arrive at the answer.",False,,,,,,,823,823,
+6,"Which paper introduced RAG, and according to the IBM video, when should you choose RAG over fine-tuning?",in_kb,"Lewis et al. 2020; RAG for dynamic, frequently updated data and when transparency/sources matter (fine-tuning for domain-specific language and faster, cheaper inference)","lewis_2020_rag_original.pdf p. 1 + IBM Technology: RAG vs. Fine-Tuning, ~3:48-4:12",rag: Zero-shot,I don't know based on the provided documents.,I don't know based on the provided documents.,True,False,1.0,2.0,"[1] klesel_2025_rag_catchword.pdf, p. 4 ; [2] gao_2025_rag_reasoning_review.pdf, p. 2 ; [3] procedia_2024_rag_llm_survey.pdf, p. 2-3 ; [4] klesel_2025_rag_catchword.pdf, p. 6 ; [5] IBM Technology: RAG vs. Fine-Tuning, at 7:20 ; [6] fan_2024_rag_meets_llms_survey.pdf, p. 2",,9.0,156,168,
+6,"Which paper introduced RAG, and according to the IBM video, when should you choose RAG over fine-tuning?",in_kb,"Lewis et al. 2020; RAG for dynamic, frequently updated data and when transparency/sources matter (fine-tuning for domain-specific language and faster, cheaper inference)","lewis_2020_rag_original.pdf p. 1 + IBM Technology: RAG vs. Fine-Tuning, ~3:48-4:12",rag: Few-shot,I don't know based on the provided documents.,I don't know based on the provided documents.,True,False,1.0,2.0,"[1] klesel_2025_rag_catchword.pdf, p. 4 ; [2] gao_2025_rag_reasoning_review.pdf, p. 2 ; [3] procedia_2024_rag_llm_survey.pdf, p. 2-3 ; [4] klesel_2025_rag_catchword.pdf, p. 6 ; [5] IBM Technology: RAG vs. Fine-Tuning, at 7:20 ; [6] fan_2024_rag_meets_llms_survey.pdf, p. 2",,7.0,177,186,
+6,"Which paper introduced RAG, and according to the IBM video, when should you choose RAG over fine-tuning?",in_kb,"Lewis et al. 2020; RAG for dynamic, frequently updated data and when transparency/sources matter (fine-tuning for domain-specific language and faster, cheaper inference)","lewis_2020_rag_original.pdf p. 1 + IBM Technology: RAG vs. Fine-Tuning, ~3:48-4:12",rag: Chain-of-thought,"I don't know based on the provided documents. According to [5], you should choose RAG over fine-tuning when you want to retrieve up-to-date information and provide a level of confidence and transparency to the end user.","1. Relevant sources are [1], [5], and [6]. 
+   - [1] mentions RAFT, which is an improvement over traditional RAG, but does not mention the introduction of RAG itself.
+   - [5] discusses the combination of fine-tuning and RAG, but does not provide information on when to choose RAG over fine-tuning.
+   - [6] provides a general overview of RAG, but does not mention the introduction of RAG.
+
+2. [6] is the only source that provides information on RAG, but it does not mention the introduction of RAG. The introduction of RAG is not mentioned in any of the provided sources.
+
+3. Since none of the sources contain the answer to the first part of the question, the answer is ""I don't know based on the provided documents.""
+
+4. For the second part of the question, [5] mentions that a combination of fine-tuning and RAG is ""so awesome"" and that the choice to use one or both techniques is up to the user and their specific use case.
+
+Answer:
+I don't know based on the provided documents. According to [5], you should choose RAG over fine-tuning when you want to retrieve up-to-date information and provide a level of confidence and transparency to the end user.",True,True,1.0,2.0,"[1] klesel_2025_rag_catchword.pdf, p. 4 ; [2] gao_2025_rag_reasoning_review.pdf, p. 2 ; [3] procedia_2024_rag_llm_survey.pdf, p. 2-3 ; [4] klesel_2025_rag_catchword.pdf, p. 6 ; [5] IBM Technology: RAG vs. Fine-Tuning, at 7:20 ; [6] fan_2024_rag_meets_llms_survey.pdf, p. 2","[5] IBM Technology: RAG vs. Fine-Tuning, at 7:20",6.0,2562,2571,
+6,"Which paper introduced RAG, and according to the IBM video, when should you choose RAG over fine-tuning?",in_kb,"Lewis et al. 2020; RAG for dynamic, frequently updated data and when transparency/sources matter (fine-tuning for domain-specific language and faster, cheaper inference)","lewis_2020_rag_original.pdf p. 1 + IBM Technology: RAG vs. Fine-Tuning, ~3:48-4:12",rag: Tree-of-thoughts,"RAG can be chosen over fine-tuning when the goal is to retrieve up-to-date information, but fine-tuning is necessary to specialize the data and model in a certain domain [5].","Here are the 3 distinct ways to answer the question:
+
+**Branch A**: Identify the paper that introduced RAG and then infer when to choose RAG over fine-tuning based on the IBM video.
+
+**Branch B**: Look for a direct statement in the IBM video about when to choose RAG over fine-tuning.
+
+**Branch C**: Analyze the papers to see if they provide any information about the relationship between RAG and fine-tuning.
+
+Let's work through the first 2 reasoning steps for each branch:
+
+**Branch A**:
+
+1. Identify the paper that introduced RAG: Unfortunately, none of the sources explicitly state which paper introduced RAG. [1] mentions that ""Innovative methods such as RA-ISF (retrieval-augmented iterative self-feedback) decompose tasks into submodules, enhancing factual reasoning and reducing hallucinations (Liu et al. 2024)"" but does not mention the introduction of RAG. [2] and [3] do not mention the introduction of RAG either.
+2. Infer when to choose RAG over fine-tuning based on the IBM video: The IBM video mentions that ""a combination of fine-tuning and rag is so awesome because we can really build amazing applications taking advantage of both rag as a way to retrieve that information and have it up to date but fine tuning to specialize our data uh but also specialize our model in a certain domain"" but does not provide a clear answer to when to choose RAG over fine-tuning.
+
+**Branch B**:
+
+1. Look for a direct statement in the IBM video about when to choose RAG over fine-tuning: Unfortunately, the IBM video does not provide a direct statement about when to choose RAG over fine-tuning.
+2. (No second step, as the first step did not yield any information.)
+
+**Branch C**:
+
+1. Analyze the papers to see if they provide any information about the relationship between RAG and fine-tuning: [4] mentions that ""RAG is an effective way to add this knowledge"" and that ""fine-tuning can also lead to hallucinations (Gekhman et al. 2024)"" but does not provide a clear answer to when to choose RAG over fine-tuning.
+2. (No second step, as the first step did not yield any information.)
+
+Evaluation:
+
+* Branch A: 4/10 (relying on inference and lack of information about the introduction of RAG)
+* Branch B: 1/10 (no direct statement in the IBM video)
+* Branch C: 3/10 (some information about the relationship between RAG and fine-tuning, but not clear answer to when to choose RAG over fine-tuning)
+
+Discarding weak branches, the best branch is **Branch C**. Expanding it into a full answer:
+
+RAG is an effective way to add knowledge, and fine-tuning can lead to hallucinations [4]. However, the sources do not provide a clear answer to when to choose RAG over fine-tuning.
+
+Backtracking to the next best branch, **Branch A**, we can try to infer when to choose RAG over fine-tuning based on the IBM video. However, the sources do not provide a clear answer to this question.
+
+The question is not covered by any source, so the final answer is the fallback sentence:
+
+I don't know based on the provided documents.
+
+However, since the question asks for two answers, we can try to provide a more specific answer based on the information in the sources. According to the IBM video, a combination of fine-tuning and RAG is ""so awesome"" because it allows for building amazing applications that take advantage of both RAG and fine-tuning. Therefore, one might choose RAG over fine-tuning when the goal is to retrieve up-to-date information, but fine-tuning is necessary to specialize the data and model in a certain domain.
+
+Answer: RAG can be chosen over fine-tuning when the goal is to retrieve up-to-date information, but fine-tuning is necessary to specialize the data and model in a certain domain [5].",False,True,1.0,2.0,"[1] klesel_2025_rag_catchword.pdf, p. 4 ; [2] gao_2025_rag_reasoning_review.pdf, p. 2 ; [3] procedia_2024_rag_llm_survey.pdf, p. 2-3 ; [4] klesel_2025_rag_catchword.pdf, p. 6 ; [5] IBM Technology: RAG vs. Fine-Tuning, at 7:20 ; [6] fan_2024_rag_meets_llms_survey.pdf, p. 2","[5] IBM Technology: RAG vs. Fine-Tuning, at 7:20",7.0,7822,7831,
+7,What is the capital of Australia?,out_of_kb,Should say I don't know,,plain,Canberra.,Canberra.,False,,,,,,,105,105,
+7,What is the capital of Australia?,out_of_kb,Should say I don't know,,rag: Zero-shot,I don't know based on the provided documents.,I don't know based on the provided documents.,True,False,,,"[1] IBM Technology: What is RAG?, at 1:06 ; [2] Retrieval - Docs by LangChain ; [3] IBM Technology: What is RAG?, at 2:11 ; [4] lewis_2020_rag_original.pdf, p. 4-5 ; [5] lewis_2020_rag_original.pdf, p. 8 ; [6] fan_2024_rag_meets_llms_survey.pdf, p. 1",,11.0,486,500,
+7,What is the capital of Australia?,out_of_kb,Should say I don't know,,rag: Few-shot,I don't know based on the provided documents.,I don't know based on the provided documents.,True,False,,,"[1] IBM Technology: What is RAG?, at 1:06 ; [2] Retrieval - Docs by LangChain ; [3] IBM Technology: What is RAG?, at 2:11 ; [4] lewis_2020_rag_original.pdf, p. 4-5 ; [5] lewis_2020_rag_original.pdf, p. 8 ; [6] fan_2024_rag_meets_llms_survey.pdf, p. 1",,9.0,487,498,
+7,What is the capital of Australia?,out_of_kb,Should say I don't know,,rag: Chain-of-thought,I don't know based on the provided documents.,"1. Relevant sources: [1], [3], and [4] are relevant to the question. 
+   - [1] discusses the problem of large language models (LLMs) hallucinating or making up answers, and how RAG can help by retrieving relevant information from a content store.
+   - [3] explains the RAG framework, where the LLM first retrieves relevant content from a content store and then generates an answer based on that content.
+   - [4] discusses the MSMARCO NLG task, which involves generating answers to questions based on retrieved passages.
+
+2. Combining the information:
+   - RAG involves retrieving relevant content from a content store and using that content to generate an answer.
+   - The content store can be open, like the internet, or closed, like a collection of documents.
+   - RAG can go beyond simple extractive QA and answer questions with free-form, abstractive text generation.
+
+3. Gaps or contradictions: None.
+
+4. Answer: I don't know based on the provided documents.
+
+Answer: I don't know based on the provided documents.",True,False,,,"[1] IBM Technology: What is RAG?, at 1:06 ; [2] Retrieval - Docs by LangChain ; [3] IBM Technology: What is RAG?, at 2:11 ; [4] lewis_2020_rag_original.pdf, p. 4-5 ; [5] lewis_2020_rag_original.pdf, p. 8 ; [6] fan_2024_rag_meets_llms_survey.pdf, p. 1",,6.0,2170,2179,
+7,What is the capital of Australia?,out_of_kb,Should say I don't know,,rag: Tree-of-thoughts,"Here are the 3 distinct ways to answer the question:
+
+**Branch A: Relying on Wikipedia**
+
+1. The question asks for the capital of Australia, which is a well-known fact that can be found in Wikipedia.
+2. According to [4], RAG models can go beyond simple extractive QA and answer questions with free-form, abstractive text generation, but it does not provide information on the capital of Australia.
+
+**Branch B: Relying on the IBM Technology video**
+
+1. The question asks for the capital of Australia, which is a piece of information that can be retrieved from a content store, as described in [3].
+2. The video [1] mentions that a large language model would confidently say the answer to a question, but it does not provide the answer to the specific question about the capital of Australia.
+
+**Branch C: Relying on the MSMARCO NLG task**
+
+1. The question asks for the capital of Australia, which is a question that can be answered using the MSMARCO NLG task, as described in [4].
+2. The MSMARCO NLG task consists of questions, ten gold passages retrieved from a search engine for each question, and a full sentence answer annotated from the retrieved passages, but it does not provide the answer to the specific question about the capital of Australia.
+
+Evaluation:
+
+* Branch A: 2/10 (it relies on external knowledge, not the sources provided)
+* Branch B: 4/10 (it relies on the IBM Technology video, which does not provide the answer to the specific question)
+* Branch C: 2/10 (it relies on the MSMARCO NLG task, which does not provide the answer to the specific question)
+
+Discarding weak branches, the best one is Branch B. However, upon further review, it turns out that the sources do not support it. Backtracking to the next best branch, Branch A is still not supported by the sources. The next best branch is Branch C, but it also does not provide the answer to the specific question.
+
+Since none of the branches provide a direct answer, the final answer is the fallback sentence:
+
+I don't know based on the provided documents.","Here are the 3 distinct ways to answer the question:
+
+**Branch A: Relying on Wikipedia**
+
+1. The question asks for the capital of Australia, which is a well-known fact that can be found in Wikipedia.
+2. According to [4], RAG models can go beyond simple extractive QA and answer questions with free-form, abstractive text generation, but it does not provide information on the capital of Australia.
+
+**Branch B: Relying on the IBM Technology video**
+
+1. The question asks for the capital of Australia, which is a piece of information that can be retrieved from a content store, as described in [3].
+2. The video [1] mentions that a large language model would confidently say the answer to a question, but it does not provide the answer to the specific question about the capital of Australia.
+
+**Branch C: Relying on the MSMARCO NLG task**
+
+1. The question asks for the capital of Australia, which is a question that can be answered using the MSMARCO NLG task, as described in [4].
+2. The MSMARCO NLG task consists of questions, ten gold passages retrieved from a search engine for each question, and a full sentence answer annotated from the retrieved passages, but it does not provide the answer to the specific question about the capital of Australia.
+
+Evaluation:
+
+* Branch A: 2/10 (it relies on external knowledge, not the sources provided)
+* Branch B: 4/10 (it relies on the IBM Technology video, which does not provide the answer to the specific question)
+* Branch C: 2/10 (it relies on the MSMARCO NLG task, which does not provide the answer to the specific question)
+
+Discarding weak branches, the best one is Branch B. However, upon further review, it turns out that the sources do not support it. Backtracking to the next best branch, Branch A is still not supported by the sources. The next best branch is Branch C, but it also does not provide the answer to the specific question.
+
+Since none of the branches provide a direct answer, the final answer is the fallback sentence:
+
+I don't know based on the provided documents.",True,True,,,"[1] IBM Technology: What is RAG?, at 1:06 ; [2] Retrieval - Docs by LangChain ; [3] IBM Technology: What is RAG?, at 2:11 ; [4] lewis_2020_rag_original.pdf, p. 4-5 ; [5] lewis_2020_rag_original.pdf, p. 8 ; [6] fan_2024_rag_meets_llms_survey.pdf, p. 1","[1] IBM Technology: What is RAG?, at 1:06 ; [3] IBM Technology: What is RAG?, at 2:11 ; [4] lewis_2020_rag_original.pdf, p. 4-5",9.0,4236,4247,
+8,Who wrote the novel Pride and Prejudice?,out_of_kb,Should say I don't know,,plain,Jane Austen,Jane Austen,False,,,,,,,105,105,
+8,Who wrote the novel Pride and Prejudice?,out_of_kb,Should say I don't know,,rag: Zero-shot,I don't know based on the provided documents.,I don't know based on the provided documents.,True,False,,,"[1] lewis_2020_rag_original.pdf, p. 6-7 ; [2] klesel_2025_rag_catchword.pdf, p. 6-7 ; [3] lewis_2020_rag_original.pdf, p. 5-6 ; [4] IBM Technology: What is RAG?, at 0:00 ; [5] klesel_2025_rag_catchword.pdf, p. 9",,9.0,153,164,
+8,Who wrote the novel Pride and Prejudice?,out_of_kb,Should say I don't know,,rag: Few-shot,I don't know based on the provided documents.,I don't know based on the provided documents.,True,False,,,"[1] lewis_2020_rag_original.pdf, p. 6-7 ; [2] klesel_2025_rag_catchword.pdf, p. 6-7 ; [3] lewis_2020_rag_original.pdf, p. 5-6 ; [4] IBM Technology: What is RAG?, at 0:00 ; [5] klesel_2025_rag_catchword.pdf, p. 9",,6.0,178,186,
+8,Who wrote the novel Pride and Prejudice?,out_of_kb,Should say I don't know,,rag: Chain-of-thought,I don't know based on the provided documents.,"1. Relevant sources: [1], [2], [3], and [4] do not mention Pride and Prejudice. However, [1] and [3] discuss the performance of RAG models on various tasks, including Open-Domain QA and generation tasks, but do not mention Pride and Prejudice. [2] and [4] discuss the potential issues with RAG models, such as unwanted bias effects and lack of sourcing, but do not mention Pride and Prejudice.
+
+2. Since none of the sources mention Pride and Prejudice, I will look for any information that might be related to the question. [1] and [3] mention authors and their works, but only in the context of the examples used to demonstrate the performance of RAG models. [2] and [4] discuss the potential issues with RAG models, but do not provide any information about authors or their works.
+
+3. Since none of the sources provide any information about the author of Pride and Prejudice, I will conclude that the answer is not available based on the provided documents.
+
+Answer: I don't know based on the provided documents.",True,False,,,"[1] lewis_2020_rag_original.pdf, p. 6-7 ; [2] klesel_2025_rag_catchword.pdf, p. 6-7 ; [3] lewis_2020_rag_original.pdf, p. 5-6 ; [4] IBM Technology: What is RAG?, at 0:00 ; [5] klesel_2025_rag_catchword.pdf, p. 9",,9.0,2245,2256,
+8,Who wrote the novel Pride and Prejudice?,out_of_kb,Should say I don't know,,rag: Tree-of-thoughts,"RAG can retrieve information about a specific author's works, but unfortunately, this doesn't directly answer the question about Pride and Prejudice [1].","Here are the distinct ways to answer the question:
+
+**Branch A**: Answer the question directly by looking up the information in the sources.
+
+**Branch B**: Use the example of Hemingway's novel ""A Farewell to Arms"" to infer that RAG can retrieve information about a specific author's works.
+
+**Branch C**: Note that none of the sources mention Pride and Prejudice, but one of them discusses the limitations of RAG in understanding contextualized documents.
+
+Let's work through the first 2 reasoning steps for each branch:
+
+**Branch A**
+
+1. Look for a source that mentions Pride and Prejudice. Unfortunately, none of the sources mention the novel.
+2. Since the sources don't mention Pride and Prejudice, we can't directly answer the question.
+
+**Branch B**
+
+1. Look for a source that mentions Hemingway's novel ""A Farewell to Arms"". [1] mentions Hemingway's novel ""A Farewell to Arms"" as an example of a document with a high posterior probability when generating a specific token.
+2. Since the source mentions Hemingway's novel, we can infer that RAG can retrieve information about a specific author's works. However, this doesn't directly answer the question about Pride and Prejudice.
+
+**Branch C**
+
+1. Note that [2] mentions the limitations of RAG in understanding contextualized documents, citing the example of using Western documents that may reflect only a Western perspective.
+2. This branch doesn't directly answer the question, but it highlights the limitations of RAG in understanding contextualized documents.
+
+Evaluation:
+
+* Branch A: 1 (no direct answer)
+* Branch B: 4 (inference is possible, but not directly relevant to the question)
+* Branch C: 1 (not directly relevant to the question)
+
+Discarding weak branches, we're left with Branch B. Let's expand it into a full answer:
+
+Since the sources don't directly answer the question, we can't provide a definitive answer. However, we can infer that RAG can retrieve information about a specific author's works, as seen in the example of Hemingway's novel ""A Farewell to Arms"" [1]. Unfortunately, this doesn't directly answer the question about Pride and Prejudice.
+
+Self-check:
+
+* The statement ""RAG can retrieve information about a specific author's works"" is supported by [1].
+* The statement ""Unfortunately, this doesn't directly answer the question about Pride and Prejudice"" is a conclusion based on the evaluation of the branches.
+
+Answer: RAG can retrieve information about a specific author's works, but unfortunately, this doesn't directly answer the question about Pride and Prejudice [1].",False,True,,,"[1] lewis_2020_rag_original.pdf, p. 6-7 ; [2] klesel_2025_rag_catchword.pdf, p. 6-7 ; [3] lewis_2020_rag_original.pdf, p. 5-6 ; [4] IBM Technology: What is RAG?, at 0:00 ; [5] klesel_2025_rag_catchword.pdf, p. 9","[1] lewis_2020_rag_original.pdf, p. 6-7",6.0,5160,5168,
+9,How much does Pinecone's enterprise plan cost per month?,out_of_kb,Should say I don't know,,plain,I don’t have access to a search engine to provide information on the cost of Pinecone’s enterprise plan.,I don’t have access to a search engine to provide information on the cost of Pinecone’s enterprise plan.,True,,,,,,,263,263,
+9,How much does Pinecone's enterprise plan cost per month?,out_of_kb,Should say I don't know,,rag: Zero-shot,I don't know based on the provided documents.,I don't know based on the provided documents.,True,False,,,"[1] klesel_2025_rag_catchword.pdf, p. 7-8 ; [2] gao_2025_rag_reasoning_review.pdf, p. 3-4 ; [3] gao_2025_rag_reasoning_review.pdf, p. 14 ; [4] gao_2025_rag_reasoning_review.pdf, p. 22 ; [5] procedia_2024_rag_llm_survey.pdf, p. 1 ; [6] IBM Technology: RAG vs. Fine-Tuning, at 6:18",,8.0,145,156,
+9,How much does Pinecone's enterprise plan cost per month?,out_of_kb,Should say I don't know,,rag: Few-shot,I don't know based on the provided documents.,I don't know based on the provided documents.,True,False,,,"[1] klesel_2025_rag_catchword.pdf, p. 7-8 ; [2] gao_2025_rag_reasoning_review.pdf, p. 3-4 ; [3] gao_2025_rag_reasoning_review.pdf, p. 14 ; [4] gao_2025_rag_reasoning_review.pdf, p. 22 ; [5] procedia_2024_rag_llm_survey.pdf, p. 1 ; [6] IBM Technology: RAG vs. Fine-Tuning, at 6:18",,8.0,167,176,
+9,How much does Pinecone's enterprise plan cost per month?,out_of_kb,Should say I don't know,,rag: Chain-of-thought,I don't know based on the provided documents.,"1. The relevant sources for this question are [1] and [6]. 
+2. [1] does not mention Pinecone's enterprise plan cost per month. 
+3. [6] mentions that fine-tuning is powerful for specific industries, but it does not provide information on Pinecone's enterprise plan cost per month. 
+4. [6] also mentions that RAG can provide context and sources, but it does not provide pricing information for Pinecone's enterprise plan.
+
+Reasoning steps do not provide the answer, so the final answer is the fallback sentence.
+
+Answer: I don't know based on the provided documents.",True,False,,,"[1] klesel_2025_rag_catchword.pdf, p. 7-8 ; [2] gao_2025_rag_reasoning_review.pdf, p. 3-4 ; [3] gao_2025_rag_reasoning_review.pdf, p. 14 ; [4] gao_2025_rag_reasoning_review.pdf, p. 22 ; [5] procedia_2024_rag_llm_survey.pdf, p. 1 ; [6] IBM Technology: RAG vs. Fine-Tuning, at 6:18",,6.0,1247,1256,
+9,How much does Pinecone's enterprise plan cost per month?,out_of_kb,Should say I don't know,,rag: Tree-of-thoughts,"Here are the 3 distinct ways to answer the question:
+
+**Branch A: Cost comparison with fine-tuning**
+
+* Reasoning step 1: According to [1], developing a vector database is much more cost-effective compared to fine-tuning when it comes to the total cost of ownership.
+* Reasoning step 2: However, [6] mentions that fine-tuning can be powerful for specific industries, but it doesn't provide a cost comparison with RAG.
+
+**Branch B: Cost of Pinecone's enterprise plan**
+
+* Reasoning step 1: Unfortunately, none of the sources mention the cost of Pinecone's enterprise plan.
+* Reasoning step 2: Since we can't find any information about the cost, we can't make any conclusions.
+
+**Branch C: Cost-effectiveness of RAG**
+
+* Reasoning step 1: [1] states that developing a vector database is much more cost-effective compared to fine-tuning when it comes to the total cost of ownership.
+* Reasoning step 2: However, [6] mentions that RAG can provide context and sources, which might be beneficial for certain industries, but it doesn't provide any information about the cost.
+
+Evaluation:
+
+* Branch A: 6/10 (it relies on a general statement about cost-effectiveness, but doesn't directly answer the question)
+* Branch B: 1/10 (it doesn't provide any information about the cost)
+* Branch C: 5/10 (it provides some context about RAG, but doesn't directly answer the question)
+
+Since Branch A is the strongest, I'll expand it into a full answer.
+
+**Expanded answer**
+
+I don't know based on the provided documents.","Here are the 3 distinct ways to answer the question:
+
+**Branch A: Cost comparison with fine-tuning**
+
+* Reasoning step 1: According to [1], developing a vector database is much more cost-effective compared to fine-tuning when it comes to the total cost of ownership.
+* Reasoning step 2: However, [6] mentions that fine-tuning can be powerful for specific industries, but it doesn't provide a cost comparison with RAG.
+
+**Branch B: Cost of Pinecone's enterprise plan**
+
+* Reasoning step 1: Unfortunately, none of the sources mention the cost of Pinecone's enterprise plan.
+* Reasoning step 2: Since we can't find any information about the cost, we can't make any conclusions.
+
+**Branch C: Cost-effectiveness of RAG**
+
+* Reasoning step 1: [1] states that developing a vector database is much more cost-effective compared to fine-tuning when it comes to the total cost of ownership.
+* Reasoning step 2: However, [6] mentions that RAG can provide context and sources, which might be beneficial for certain industries, but it doesn't provide any information about the cost.
+
+Evaluation:
+
+* Branch A: 6/10 (it relies on a general statement about cost-effectiveness, but doesn't directly answer the question)
+* Branch B: 1/10 (it doesn't provide any information about the cost)
+* Branch C: 5/10 (it provides some context about RAG, but doesn't directly answer the question)
+
+Since Branch A is the strongest, I'll expand it into a full answer.
+
+**Expanded answer**
+
+I don't know based on the provided documents.",True,True,,,"[1] klesel_2025_rag_catchword.pdf, p. 7-8 ; [2] gao_2025_rag_reasoning_review.pdf, p. 3-4 ; [3] gao_2025_rag_reasoning_review.pdf, p. 14 ; [4] gao_2025_rag_reasoning_review.pdf, p. 22 ; [5] procedia_2024_rag_llm_survey.pdf, p. 1 ; [6] IBM Technology: RAG vs. Fine-Tuning, at 6:18","[1] klesel_2025_rag_catchword.pdf, p. 7-8 ; [6] IBM Technology: RAG vs. Fine-Tuning, at 6:18",7.0,3234,3242,
+10,Which RAG framework did Microsoft release in 2026?,out_of_kb,Should say I don't know,,plain,"I don't have information about a specific RAG framework released by Microsoft in 2026. My knowledge cutoff is March 2023, and I may not have access to the most recent developments or releases. If you could provide more context or clarify which RAG framework you are referring to, I'll do my best to help.","I don't have information about a specific RAG framework released by Microsoft in 2026. My knowledge cutoff is March 2023, and I may not have access to the most recent developments or releases. If you could provide more context or clarify which RAG framework you are referring to, I'll do my best to help.",True,,,,,,,636,636,
+10,Which RAG framework did Microsoft release in 2026?,out_of_kb,Should say I don't know,,rag: Zero-shot,I don't know based on the provided documents.,I don't know based on the provided documents.,True,False,,,"[1] procedia_2024_rag_llm_survey.pdf, p. 6 ; [2] IBM Technology: RAG vs. Fine-Tuning, at 7:20 ; [3] gao_2025_rag_reasoning_review.pdf, p. 29-30 ; [4] klesel_2025_rag_catchword.pdf, p. 9 ; [5] klesel_2025_rag_catchword.pdf, p. 6 ; [6] klesel_2025_rag_catchword.pdf, p. 4",,9.0,151,163,
+10,Which RAG framework did Microsoft release in 2026?,out_of_kb,Should say I don't know,,rag: Few-shot,I don't know based on the provided documents.,I don't know based on the provided documents.,True,False,,,"[1] procedia_2024_rag_llm_survey.pdf, p. 6 ; [2] IBM Technology: RAG vs. Fine-Tuning, at 7:20 ; [3] gao_2025_rag_reasoning_review.pdf, p. 29-30 ; [4] klesel_2025_rag_catchword.pdf, p. 9 ; [5] klesel_2025_rag_catchword.pdf, p. 6 ; [6] klesel_2025_rag_catchword.pdf, p. 4",,6.0,429,438,
+10,Which RAG framework did Microsoft release in 2026?,out_of_kb,Should say I don't know,,rag: Chain-of-thought,I don't know based on the provided documents.,"1. The relevant sources for this question are [1], [2], [3], [4], [5], and [6]. However, upon reviewing these sources, I notice that none of them mention a specific RAG framework released by Microsoft in 2026.
+
+2. Source [2] mentions IBM's use of RAG and fine-tuning, but it does not mention Microsoft or a specific framework release. Source [3] discusses future trends in RAG, including the integration of RAG and graph-based approaches, but it does not mention Microsoft or a specific framework release. Source [4] discusses the potential benefits of RAG for organizations, but it does not mention Microsoft or a specific framework release. Source [5] discusses the challenges of implementing RAG-based systems, including data management and bias effects, but it does not mention Microsoft or a specific framework release. Source [6] provides an overview of the RAG architecture, including the generator and context components, but it does not mention Microsoft or a specific framework release.
+
+3. Since none of the sources contain information about a specific RAG framework released by Microsoft in 2026, I must conclude that I don't know based on the provided documents.
+
+Answer: I don't know based on the provided documents.",True,False,,,"[1] procedia_2024_rag_llm_survey.pdf, p. 6 ; [2] IBM Technology: RAG vs. Fine-Tuning, at 7:20 ; [3] gao_2025_rag_reasoning_review.pdf, p. 29-30 ; [4] klesel_2025_rag_catchword.pdf, p. 9 ; [5] klesel_2025_rag_catchword.pdf, p. 6 ; [6] klesel_2025_rag_catchword.pdf, p. 4",,7.0,2432,2440,
+10,Which RAG framework did Microsoft release in 2026?,out_of_kb,Should say I don't know,,rag: Tree-of-thoughts,"RAG combines a retriever with a generator [1], but the sources do not mention a specific RAG framework released by Microsoft in 2026.","I'll explore several reasoning paths to answer the question.
+
+**Branch A:**
+This branch relies on the assumption that the question is asking about a specific RAG framework released by Microsoft in 2026. The reasoning steps are:
+
+1. The question asks about a specific RAG framework released by Microsoft in 2026, which is not mentioned in any of the provided sources. [I don't know based on the provided documents.]
+2. Since the question is not supported by the sources, this branch is not viable.
+
+**Branch B:**
+This branch focuses on the general concept of RAG and its components, rather than a specific framework. The reasoning steps are:
+
+1. RAG combines a retriever with a generator [1].
+2. The sources do not mention a specific RAG framework released by Microsoft in 2026.
+
+**Branch C:**
+This branch explores the idea that the question might be asking about a hypothetical or future development, rather than a specific release. The reasoning steps are:
+
+1. The sources mention future trends and developments in RAG, such as the integration of RAG and graph-based approaches [3].
+2. However, there is no mention of a specific RAG framework released by Microsoft in 2026.
+
+Evaluation:
+
+* Branch A: 1 (no support from sources)
+* Branch B: 8 (general concept of RAG is mentioned, but no specific framework is mentioned)
+* Branch C: 6 (future trends and developments are mentioned, but no specific framework is mentioned)
+
+The best branch is Branch B, which focuses on the general concept of RAG. However, it does not provide a specific answer to the question.
+
+Since the sources do not provide a specific answer to the question, the fallback answer is:
+
+I don't know based on the provided documents.
+
+However, I can try to expand on Branch B to provide a more detailed answer.
+
+Answer: RAG combines a retriever with a generator [1], but the sources do not mention a specific RAG framework released by Microsoft in 2026.",False,True,,,"[1] procedia_2024_rag_llm_survey.pdf, p. 6 ; [2] IBM Technology: RAG vs. Fine-Tuning, at 7:20 ; [3] gao_2025_rag_reasoning_review.pdf, p. 29-30 ; [4] klesel_2025_rag_catchword.pdf, p. 9 ; [5] klesel_2025_rag_catchword.pdf, p. 6 ; [6] klesel_2025_rag_catchword.pdf, p. 4","[1] procedia_2024_rag_llm_survey.pdf, p. 6",8.0,3875,3885,

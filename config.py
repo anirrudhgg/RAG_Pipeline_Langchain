@@ -29,8 +29,10 @@ OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.1:8b")
 
 # --- Chunking (in characters), per document type -------------------------------
 # Chosen with experiments.py (15 size/overlap combinations, 12 test questions,
-# results in results/chunking_summary.csv). Overlap 100 beat 0 and 200 for every size,
-# and 300/100 was the best setting overall (MRR 0.86, hit@4 1.00).
+# results in results/chunking_summary.csv). Overlap 100 beat 0 at every size, and
+# 300/100 is tied for best overall (MRR 0.82, with 1000/100) and best for PDFs (MRR 0.89),
+# which are most of the knowledge base. (Before Wikipedia's reference list was removed it
+# scored 0.86: that list had counted as a 'hit' for the Wikipedia question.)
 #
 # Per type, the experiment preferred web 1000 and video unsplit (~1000-1200 chars).
 # But mixing sizes biased retrieval: 1,500 short PDF chunks outranked the long video

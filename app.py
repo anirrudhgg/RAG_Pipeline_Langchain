@@ -62,7 +62,7 @@ load_models()
 with st.sidebar:
     st.header("Settings")
     style = st.selectbox(
-        "Prompt style", list(prompts.STYLES), index=0,
+        "Prompt style", list(prompts.STYLES), index=1,
         help="Zero-shot: rules only. Few-shot: adds worked examples. Chain-of-thought: reasons "
              "step by step first. Tree-of-thoughts: explores and rates several reasoning paths.",
     )

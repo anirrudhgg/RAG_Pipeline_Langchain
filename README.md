@@ -80,10 +80,12 @@ python retrieval.py "What is HNSW?" --k 6            # compare the two search me
 python prompts.py                                    # preview all prompt templates
 ```
 
-**Experiments and diagnostics**
+**Experiments, diagnostics and evaluation**
 ```
-python experiments.py     # chunk size / overlap grid and similarity vs MMR, saves results/*.csv
-python diagnose.py        # where each document type ranks for a question
+python experiments.py           # chunk size / overlap grid and similarity vs MMR, saves results/*.csv
+python diagnose.py              # where each document type ranks for a question
+python evaluate.py              # RAG (4 prompt styles) vs plain LLM on eval_questions.csv
+python evaluate.py --summarise  # rebuild the summary after labelling the answers
 ```
 
 ## How it works
@@ -101,10 +103,10 @@ question
 |---|---|---|
 | Loading | PyPDFLoader, WebBaseLoader, youtube-transcript-api | One LangChain-compatible loader per document type; transcripts grouped into 60-second windows with timestamps |
 | Cleaning | Reference lists removed from PDFs and web pages | Bibliographies matched almost every query and ranked #1 without containing any explanation |
-| Chunking | 300 characters, 100 overlap, for all types | Best overall setting in the experiments (MRR 0.86); equal sizes stop short chunks from outranking long ones |
+| Chunking | 300 characters, 100 overlap, for all types | Tied best overall (MRR 0.82) and best for the PDFs (0.89); equal sizes stop short chunks from outranking long ones |
 | Embeddings | all-MiniLM-L6-v2, normalised | Small, fast, free, runs locally; normalised vectors make L2 distance equivalent to cosine similarity |
 | Vector DB | ChromaDB (HNSW index), persistent | Local, simple, stores metadata (source, page, timestamp) for citations |
-| Retrieval | MMR, k=6 | Same accuracy as similarity search but more diverse results (3.3 vs 2.8 distinct sources in the top 4) |
+| Retrieval | MMR, k=6 | Same accuracy as similarity search but more diverse results (3.4 vs 2.8 distinct sources in the top 4) |
 | Context | Small-to-big, window 2 | Small chunks retrieve best but are too short to answer from |
 | LLM | Llama 3.1 8B via Ollama, temperature 0 | Free, private, runs on the GPU; temperature 0 makes the evaluation repeatable |
 
@@ -115,19 +117,20 @@ question
 
 | Setting | Chunks | hit@1 | hit@4 | MRR |
 |---|---|---|---|---|
-| **300 / 100** | 1,911 | 0.75 | 1.00 | **0.86** |
-| 1000 / 100 | 508 | 0.67 | 1.00 | 0.82 |
-| 300 / 0 | 1,621 | 0.75 | 0.83 | 0.79 |
-| 1000 / 0 | 489 | 0.50 | 0.92 | 0.67 |
-| 500 / 0 | 957 | 0.50 | 0.83 | 0.62 |
+| **300 / 100** (chosen) | 1,846 | 0.75 | 0.92 | **0.82** |
+| 1000 / 200 | 525 | 0.67 | 1.00 | 0.83 |
+| 1000 / 100 | 492 | 0.67 | 1.00 | 0.82 |
+| 300 / 0 | 1,564 | 0.75 | 0.83 | 0.77 |
+| 1000 / 0 | 474 | 0.50 | 0.92 | 0.67 |
+| 500 / 0 | 928 | 0.50 | 0.83 | 0.62 |
 
-Overlap 100 beat 0 and 200 at every size. The test set is small (12 questions), so trends matter more than exact decimals.
+Overlap 100 beat 0 at every size. Per document type, 300/100 was best for PDFs (MRR 0.89), which make up most of the knowledge base. The one miss at 300/100 is "Who introduced the term retrieval-augmented generation?": before Wikipedia's reference list was removed, that list counted as a hit (MRR was 0.86), so the lower score is the more honest one. The test set is small (12 questions), so trends matter more than exact decimals.
 
 ### Search methods (final settings)
 | Method | hit@4 | MRR | Distinct results in top 4 |
 |---|---|---|---|
-| Similarity | 1.00 | 0.86 | 2.8 |
-| MMR | 1.00 | 0.86 | 3.3 |
+| Similarity | 0.92 | 0.82 | 2.8 |
+| MMR | 0.92 | 0.82 | 3.4 |
 
 ### Response times (RTX 5070)
 | Step | Time |
@@ -138,8 +141,8 @@ Overlap 100 beat 0 and 200 at every size. The test set is small (12 questions), 
 | Generation (chain-of-thought) | ~3 s |
 
 ### RAG vs plain LLM
-<!-- TODO: fill in after running evaluate.py -->
-*To be added: results of `evaluate.py` on the 10 questions in `eval_questions.csv` (6 inside, 4 outside the knowledge base).*
+<!-- TODO: fill in from results/eval_summary.csv after running and labelling evaluate.py -->
+*To be added: results of `evaluate.py` on the 10 questions in `eval_questions.csv` (6 inside, 4 outside the knowledge base), comparing the plain LLM with RAG in all four prompt styles. Each answer is labelled correct / partial / wrong / hallucinated / refused in `results/eval_answers.csv`.*
 
 ## Challenges and solutions
 
@@ -161,6 +164,7 @@ Overlap 100 beat 0 and 200 at every size. The test set is small (12 questions), 
 ├── config.py              All settings (paths, models, chunk sizes, k, context window)
 ├── experiments.py         Chunking and search-method experiments
 ├── diagnose.py            Rank of each document type for a question
+├── evaluate.py            RAG vs plain LLM evaluation (answers, timings, automatic checks)
 ├── test_questions.py      Retrieval test questions with known sources
 ├── eval_questions.csv     Evaluation questions (inside / outside the knowledge base)
 ├── data/                  PDFs, web page URLs, YouTube URLs
@@ -169,9 +173,3 @@ Overlap 100 beat 0 and 200 at every size. The test set is small (12 questions), 
 ```
 
 ## Team
-
-1. Anirudh Gopishankar
-2. Hussein A. Monem
-3. Marc Baroud
-4. Jeremie HB
-5. Sakhib Ahmed Baig

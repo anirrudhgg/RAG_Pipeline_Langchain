@@ -23,6 +23,7 @@ Each builder returns a plain string, so it works with any LLM client
 
 from __future__ import annotations
 
+import re
 from typing import Iterable, Sequence, Tuple
 
 # --------------------------------------------------------------------------
@@ -40,7 +41,11 @@ Rules:
 2. Cite every statement with the number of the source it comes from, e.g. [1] or [2][3].
 3. If the sources do not contain the answer, reply with exactly: "{DONT_KNOW}"
    Do not guess and do not add citations to this sentence.
-4. Be concise: answer in at most 5 sentences unless the question asks for a list."""
+4. If the question has several parts and the sources answer only some of them, answer those
+   parts with citations and say plainly which part the sources do not cover.
+5. Your own knowledge is not a source. Even if you know the answer, use the sentence in rule 3
+   when the sources do not contain it.
+6. Be concise: answer in at most 5 sentences unless the question asks for a list."""
 
 # --------------------------------------------------------------------------
 # Raw templates
@@ -110,11 +115,14 @@ Solve this by exploring several reasoning paths:
 Label them "Branch A", "Branch B", etc.
 2. For each branch, work through the first {depth} reasoning steps, citing the sources used.
 3. Evaluate each branch: rate it 1-10 for how fully and directly the sources support it, \
-and explain why.
+and explain why. A branch that relies on your own knowledge instead of the sources scores 1.
 4. Discard weak branches and expand the best one into a full answer. If it turns out \
 the sources do not support it, backtrack to the next best branch.
-5. If no branch is supported by the sources, the final answer is the fallback sentence.
-6. Finish with the final answer with citations on a new line starting with "Answer:".
+5. Self-check the chosen answer: is every statement in it stated in a source you cite? \
+If the question is not covered by any source, the final answer is the fallback sentence.
+6. Finish with exactly one line starting with "Answer:" that states the complete answer \
+in full sentences with citations, e.g. "Answer: RAG combines a retriever with a generator [1]." \
+Never give only citation numbers as the answer.
 
 Branches:"""
 
@@ -269,21 +277,56 @@ def build_prompt(style: str, question: str, context: str) -> str:
     return STYLES[style](question, context)
 
 
+def _has_content(text: str) -> bool:
+    """True if text has real words besides citation numbers and punctuation."""
+    return len(re.sub(r"\[\d+\]|[\s.,;:()\-]", "", text)) >= 3
+
+
 def extract_answer(response: str) -> str:
     """
     Return only the final answer from a model response.
     Chain-of-thought and tree-of-thoughts responses contain reasoning first and
-    the answer after the last "Answer:"; other responses are returned unchanged.
+    the answer after "Answer:". The last "Answer:" section that contains real
+    text is used, so a stray final "Answer: [1]" does not hide the actual answer.
+    Responses without "Answer:" are returned unchanged.
     """
     marker = "Answer:"
-    if marker in response:
-        return response.rsplit(marker, 1)[1].strip()
+    if marker not in response:
+        return response.strip()
+    sections = response.split(marker)[1:]
+    for section in reversed(sections):
+        if _has_content(section):
+            return section.strip()
     return response.strip()
 
 
+# Ways the model (or the plain LLM) declines without using the exact fallback sentence
+REFUSAL_PATTERN = re.compile(
+    r"none of the (provided |given )?(sources|documents)"
+    r"|(sources|documents|context) (do|does) not (contain|provide|mention|include|address|cover)"
+    r"|no (relevant )?information (about|on|regarding)"
+    r"|i (don'?t|do not) have (any |the )?(specific |relevant )?(information|access|data|details)"
+    r"|i (cannot|can'?t) find",
+    re.I,
+)
+
+
 def is_dont_know(answer: str) -> bool:
-    """True if the model used the fallback (tolerant of small wording/punctuation changes)."""
-    return "i don't know" in answer.lower() or "i do not know" in answer.lower()
+    """
+    True if the answer declines instead of answering.
+      - the exact fallback sentence (or "I don't know" / "I do not know"), or
+      - a short answer without citations that says the sources (or the model)
+        have no information, e.g. "None of the sources mention X."
+    Long answers that start with a disclaimer and then answer anyway
+    ("I don't have access to that survey, however...") do not count.
+    This is a heuristic; the human labels in evaluate.py are the reference.
+    """
+    answer = answer.replace("\u2019", "'")  # curly apostrophe (don\u2019t) -> straight
+    lower = answer.lower()
+    if "i don't know" in lower or "i do not know" in lower:
+        return True
+    has_citation = bool(re.search(r"\[\d+\]", answer))
+    return not has_citation and len(answer) < 400 and bool(REFUSAL_PATTERN.search(answer))
 
 
 __all__ = [
