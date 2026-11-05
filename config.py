@@ -26,6 +26,9 @@ COLLECTION_NAME = "rag_docs"
 # of a chunk, so chunks much longer than that get cut off when embedded.
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.1:8b")
+# Judge for the evaluation metrics (metrics.py). A different model family than the
+# one that writes the answers, so the model does not grade its own work.
+JUDGE_MODEL = os.getenv("JUDGE_MODEL", "qwen2.5:7b")
 
 # --- Chunking (in characters), per document type -------------------------------
 # Chosen with experiments.py (15 size/overlap combinations, 12 test questions,

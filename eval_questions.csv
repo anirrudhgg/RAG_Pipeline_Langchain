@@ -1,5 +1,5 @@
 id,question,category,expected_answer,expected_source,notes
-1,"According to Klesel and Wittmann, what share of employees are dissatisfied with enterprise search interfaces?",in_kb,79% (Cleverley and Burnett 2019),klesel_2025_rag_catchword.pdf p. 1,"2025 paper, plain LLM can't know. Simple fact"
+1,"According to Klesel and Wittmann, what share of employees are dissatisfied with enterprise search interfaces?",in_kb,79% of employees (Klesel and Wittmann cite this figure from Cleverley and Burnett 2019),klesel_2025_rag_catchword.pdf p. 1,"2025 paper, plain LLM can't know. Simple fact"
 2,How does the Procedia survey classify RAG applications?,in_kb,Task-based and discipline-based classification,procedia_2024_rag_llm_survey.pdf p. 3,2024 paper. Plain LLM likely gives a generic answer
 3,What is the default embedding model in ChromaDB?,in_kb,all-MiniLM-L6-v2,Chroma docs: embedding-functions,Web page. Simple fact
 4,What are the two components of the original RAG model?,in_kb,Pre-trained retriever (DPR) + seq2seq generator (BART),lewis_2020_rag_original.pdf p. 2,PDF. Simple fact; plain LLM probably knows it (good baseline)

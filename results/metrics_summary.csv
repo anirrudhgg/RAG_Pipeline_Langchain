@@ -1,0 +1,6 @@
+﻿mode,"context relevance, in_kb (RAG)",in_kb: questions with a relevant chunk,answer relevance 1-5 (judge),answer similarity (embeddings),in_kb: hallucinated answers,in_kb: hallucination rate,in_kb: unsupported claims,out_of_kb: answered without grounding
+plain,,,3.83,0.63,4/4,1.0,7/8,2/4
+rag: Zero-shot,0.26,5/6,4.6,0.72,1/5,0.2,1/14,0/4
+rag: Few-shot,0.26,5/6,4.2,0.74,0/5,0.0,0/13,0/4
+rag: Chain-of-thought,0.26,5/6,3.83,0.61,0/6,0.0,0/14,0/4
+rag: Tree-of-thoughts,0.26,5/6,4.5,0.72,0/6,0.0,0/17,2/4

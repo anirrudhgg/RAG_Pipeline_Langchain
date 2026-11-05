@@ -296,7 +296,7 @@ def extract_answer(response: str) -> str:
     sections = response.split(marker)[1:]
     for section in reversed(sections):
         if _has_content(section):
-            return section.strip()
+            return section.strip().lstrip("*").strip()  # drop markdown left from "**Answer:**"
     return response.strip()
 
 
@@ -317,15 +317,23 @@ def is_dont_know(answer: str) -> bool:
       - the exact fallback sentence (or "I don't know" / "I do not know"), or
       - a short answer without citations that says the sources (or the model)
         have no information, e.g. "None of the sources mention X."
+    An answer that starts with the fallback but then answers with citations
+    ("I don't know... According to [5], ...") is a partial answer, not a refusal.
     Long answers that start with a disclaimer and then answer anyway
     ("I don't have access to that survey, however...") do not count.
     This is a heuristic; the human labels in evaluate.py are the reference.
     """
     answer = answer.replace("\u2019", "'")  # curly apostrophe (don\u2019t) -> straight
     lower = answer.lower()
-    if "i don't know" in lower or "i do not know" in lower:
-        return True
     has_citation = bool(re.search(r"\[\d+\]", answer))
+    idx = max(lower.rfind("i don't know"), lower.rfind("i do not know"))
+    if idx >= 0:
+        # Look only at what comes AFTER the fallback sentence:
+        #   "I don't know... According to [5], RAG is ..."  -> partial answer, not a refusal
+        #   "Branch A [4] ... final answer: I don't know..." -> refusal (reasoning came before)
+        end = lower.find(".", idx)
+        rest = answer[end + 1:] if end >= 0 else ""
+        return not (re.search(r"\[\d+\]", rest) and len(rest.strip()) > 40)
     return not has_citation and len(answer) < 400 and bool(REFUSAL_PATTERN.search(answer))
 
 

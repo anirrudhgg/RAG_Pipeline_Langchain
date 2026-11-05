@@ -46,9 +46,10 @@ The files and links are in `data/`. Web pages and video transcripts are fetched 
    ```
    Embedding the knowledge base takes about 8 seconds on an RTX 5070, compared with about 3 minutes on CPU.
 
-3. **Download the LLM**
+3. **Download the LLM** (and the judge model for the evaluation metrics)
    ```
    ollama pull llama3.1:8b
+   ollama pull qwen2.5:7b
    ```
    On a laptop without a strong GPU, a smaller model works too: `ollama pull llama3.2:3b`, then set it in `.env`.
 
@@ -86,6 +87,7 @@ python experiments.py           # chunk size / overlap grid and similarity vs MM
 python diagnose.py              # where each document type ranks for a question
 python evaluate.py              # RAG (4 prompt styles) vs plain LLM on eval_questions.csv
 python evaluate.py --summarise  # rebuild the summary after labelling the answers
+python metrics.py               # relevance + hallucination metrics (judge model: qwen2.5:7b)
 ```
 
 ## How it works
@@ -141,8 +143,34 @@ Overlap 100 beat 0 at every size. Per document type, 300/100 was best for PDFs (
 | Generation (chain-of-thought) | ~3 s |
 
 ### RAG vs plain LLM
-<!-- TODO: fill in from results/eval_summary.csv after running and labelling evaluate.py -->
-*To be added: results of `evaluate.py` on the 10 questions in `eval_questions.csv` (6 inside, 4 outside the knowledge base), comparing the plain LLM with RAG in all four prompt styles. Each answer is labelled correct / partial / wrong / hallucinated / refused in `results/eval_answers.csv`.*
+10 questions (`eval_questions.csv`): 6 answerable from the knowledge base, 4 outside it. Every question was asked to the plain LLM (no retrieval) and to RAG with each prompt style (`results/eval_summary.csv`).
+
+| | Plain LLM | Zero-shot | Few-shot | Chain-of-thought | Tree-of-thoughts |
+|---|---|---|---|---|---|
+| Outside KB: correctly said "I don't know" | 2/4 | **4/4** | **4/4** | **4/4** | 2/4 |
+| Inside KB: wrongly refused | 2/6 | 1/6 | 1/6 | 0/6 | 0/6 |
+| Inside KB: answers with a citation | – | 4/5 | **5/5** | 6/6 | 6/6 |
+| Average response time | 0.8 s | 0.6 s | 0.7 s | 2.1 s | 4.5 s |
+
+The one question RAG refuses (Q6) needs two sources at once (a paper and a video); retrieval found only one, so the model declined instead of guessing.
+
+### Evaluation metrics
+Scored with `metrics.py`, using a different model (Qwen 2.5 7B) as the judge so Llama does not grade its own answers (`results/metrics_summary.csv`).
+
+| | Plain LLM | Zero-shot | Few-shot | Chain-of-thought | Tree-of-thoughts |
+|---|---|---|---|---|---|
+| **Hallucinated answers** (inside KB) | **4/4** | 1/5 | **0/5** | **0/6** | **0/6** |
+| Unsupported claims (inside KB) | 7/8 | 1/14 | 0/13 | 0/14 | 0/17 |
+| Answered outside KB anyway | 2/4 | 0/4 | 0/4 | 0/4 | 2/4 |
+| Answer relevance (judge, 1–5) | 3.8 | 4.6 | 4.2 | 3.8 | 4.5 |
+| Answer–question similarity (embeddings) | 0.63 | 0.72 | 0.74 | 0.61 | 0.72 |
+| Questions with a relevant retrieved chunk | – | 5/6 | 5/6 | 5/6 | 5/6 |
+| Share of retrieved chunks that are relevant | – | 0.26 | 0.26 | 0.26 | 0.26 |
+
+- **Hallucination:** every answer the plain LLM gave inside the knowledge base was invented: RAG as "Red-Amber-Green" status colours, "Recognition and Action", "Recurrent Attention-Generative", "Reinforced Actor-Guesser". RAG's only flagged answer (zero-shot) invented a part of the question it then said the sources did not cover.
+- **Prompt styles:** few-shot and chain-of-thought were fully grounded and refused all out-of-scope questions. Tree-of-thoughts answered 2 of 4 out-of-scope questions: its long reasoning gives the 8B model more room to drift from the sources.
+- **Retrieval:** with k=6 and MMR (deliberately diverse chunks) only a few chunks can contain the answer, so the share of relevant chunks is low by design; 5 of 6 questions had at least one chunk containing the answer.
+- **Judge reliability:** the judge needed three prompt iterations (it rejected passages that did not repeat the paper's name, counted citations as claims, and copied an example answer). It still makes occasional mistakes, so human labels in `results/eval_answers.csv` remain the reference.
 
 ## Challenges and solutions
 
@@ -165,6 +193,7 @@ Overlap 100 beat 0 at every size. Per document type, 300/100 was best for PDFs (
 ├── experiments.py         Chunking and search-method experiments
 ├── diagnose.py            Rank of each document type for a question
 ├── evaluate.py            RAG vs plain LLM evaluation (answers, timings, automatic checks)
+├── metrics.py             Evaluation metrics: context/answer relevance, hallucination detection
 ├── test_questions.py      Retrieval test questions with known sources
 ├── eval_questions.csv     Evaluation questions (inside / outside the knowledge base)
 ├── data/                  PDFs, web page URLs, YouTube URLs
@@ -173,3 +202,5 @@ Overlap 100 beat 0 at every size. Per document type, 300/100 was best for PDFs (
 ```
 
 ## Team
+
+<!-- Add names and who did what -->
