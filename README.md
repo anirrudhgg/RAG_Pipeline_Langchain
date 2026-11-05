@@ -164,13 +164,18 @@ Scored with `metrics.py`, using a different model (Qwen 2.5 7B) as the judge so 
 | Answered outside KB anyway | 2/4 | 0/4 | 0/4 | 0/4 | 2/4 |
 | Answer relevance (judge, 1–5) | 3.8 | 4.6 | 4.2 | 3.8 | 4.5 |
 | Answer–question similarity (embeddings) | 0.63 | 0.72 | 0.74 | 0.61 | 0.72 |
+| **Faithfulness** (claims backed by the sources) | **0.15** | **0.97** | **0.92** | **1.00** | **0.96** |
+| Fully faithful answers (inside KB) | 0/4 | 4/5 | 4/5 | 6/6 | 5/6 |
+| Citation precision (cited source states the claim) | – | 1.00 | 0.87 | 0.96 | 0.75 |
 | Questions with a relevant retrieved chunk | – | 5/6 | 5/6 | 5/6 | 5/6 |
 | Share of retrieved chunks that are relevant | – | 0.26 | 0.26 | 0.26 | 0.26 |
 
+- **Hallucination vs faithfulness:** hallucination detection asks whether an answer is *true* (checked against the reference answer and the sources); faithfulness asks whether it is *backed by the retrieved documents* (sources only). "Canberra" is true but not faithful.
 - **Hallucination:** every answer the plain LLM gave inside the knowledge base was invented: RAG as "Red-Amber-Green" status colours, "Recognition and Action", "Recurrent Attention-Generative", "Reinforced Actor-Guesser". RAG's only flagged answer (zero-shot) invented a part of the question it then said the sources did not cover.
 - **Prompt styles:** few-shot and chain-of-thought were fully grounded and refused all out-of-scope questions. Tree-of-thoughts answered 2 of 4 out-of-scope questions: its long reasoning gives the 8B model more room to drift from the sources.
 - **Retrieval:** with k=6 and MMR (deliberately diverse chunks) only a few chunks can contain the answer, so the share of relevant chunks is low by design; 5 of 6 questions had at least one chunk containing the answer.
-- **Judge reliability:** the judge needed three prompt iterations (it rejected passages that did not repeat the paper's name, counted citations as claims, and copied an example answer). It still makes occasional mistakes, so human labels in `results/eval_answers.csv` remain the reference.
+- **Faithfulness:** the judge must quote the sentence that supports each claim, and the script verifies the quote itself (it must occur in a source and share the claim's key words; if the judge's quote fails, the script searches the sources for a matching sentence). The plain LLM's 0.15 comes from two generic fragments ("The output is also a sequence of tokens"); none of its invented content is backed. Chain-of-thought was fully faithful; tree-of-thoughts cited the wrong source most often (citation precision 0.75).
+- **Judge reliability:** the judge needed several iterations (it rejected passages that did not repeat the paper's name, counted citations as claims, accepted support that was only on the same topic, and once looped while copying text, which is now retried). It still makes occasional mistakes, so human labels in `results/eval_answers.csv` remain the reference.
 
 ## Challenges and solutions
 
