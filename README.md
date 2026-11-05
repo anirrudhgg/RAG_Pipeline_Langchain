@@ -208,4 +208,8 @@ Scored with `metrics.py`, using a different model (Qwen 2.5 7B) as the judge so 
 
 ## Team
 
-<!-- Add names and who did what -->
+- Anirudh Gopishankar
+- Hussein A. Monem
+- Marc Baroud
+- Sakhib Ahmed Baig
+- Jeremie HB
