@@ -325,6 +325,10 @@ def is_dont_know(answer: str) -> bool:
     """
     answer = answer.replace("\u2019", "'")  # curly apostrophe (don\u2019t) -> straight
     lower = answer.lower()
+    # Reasoning that concludes with the fallback without writing it out:
+    # "...Since none of the sources contain the answer, the final answer is the fallback sentence."
+    if "fallback sentence" in lower and not re.search(r"answer:\s*\S", lower.split("fallback sentence")[-1]):
+        return True
     has_citation = bool(re.search(r"\[\d+\]", answer))
     idx = max(lower.rfind("i don't know"), lower.rfind("i do not know"))
     if idx >= 0:

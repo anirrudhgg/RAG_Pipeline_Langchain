@@ -1,6 +1,6 @@
-﻿mode,out_of_kb: correctly refused,in_kb: wrongly refused,avg total time (s),avg generation time (s),in_kb: answers with a citation,in_kb: expected sources retrieved,avg retrieval time (ms)
-plain,2/4,2/6,0.77,0.77,,,
-rag: Zero-shot,4/4,1/6,0.62,0.6,4/5,6/7,12.0
-rag: Few-shot,4/4,1/6,0.68,0.67,5/5,6/7,7.0
-rag: Chain-of-thought,4/4,0/6,2.08,2.07,6/6,6/7,7.0
-rag: Tree-of-thoughts,2/4,0/6,4.53,4.52,6/6,6/7,8.0
+﻿mode,out_of_kb: correctly refused,in_kb: wrongly refused,avg total time (s),avg generation time (s),labelled,correct,partial,wrong,hallucinated,refused,in_kb: accuracy (correct + partial/2),in_kb: hallucinated (human),out_of_kb: correctly refused (human),hallucination rate (all),in_kb: answers with a citation,in_kb: expected sources retrieved,avg retrieval time (ms)
+plain,2/4,2/6,0.89,0.89,10/10,0,0,2,4,4,0.0,4/6,2/4,0.4,,,
+rag: Zero-shot,4/4,1/6,0.75,0.73,10/10,3,2,0,0,5,0.67,0/6,4/4,0.0,4/5,6/7,17.0
+rag: Few-shot,4/4,1/6,1.35,1.34,10/10,4,1,0,0,5,0.75,0/6,4/4,0.0,5/5,6/7,8.0
+rag: Chain-of-thought,4/4,1/6,2.01,2.0,10/10,4,1,0,0,5,0.75,0/6,4/4,0.0,5/5,6/7,7.0
+rag: Tree-of-thoughts,4/4,1/6,4.99,4.98,10/10,4,1,0,0,5,0.75,0/6,4/4,0.0,5/5,6/7,7.0

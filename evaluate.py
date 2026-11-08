@@ -152,9 +152,17 @@ def summarise(answers: pd.DataFrame | None = None, answers_file: str = ANSWERS_F
             row["labelled"] = f"{len(labelled)}/{len(part)}"
             for label in LABELS:
                 row[label] = int((labelled.label == label).sum())
-            row["accuracy (correct + partial/2)"] = round(
-                ((labelled.label == "correct").sum() + 0.5 * (labelled.label == "partial").sum()) / len(labelled), 2)
-            row["hallucination rate"] = round((labelled.label == "hallucinated").sum() / len(labelled), 2)
+            # In the knowledge base the right behaviour is a correct answer;
+            # outside it, the right behaviour is to refuse. So score them separately.
+            li = labelled[labelled.category == "in_kb"]
+            lo = labelled[labelled.category == "out_of_kb"]
+            if len(li):
+                row["in_kb: accuracy (correct + partial/2)"] = round(
+                    ((li.label == "correct").sum() + 0.5 * (li.label == "partial").sum()) / len(li), 2)
+                row["in_kb: hallucinated (human)"] = f"{int((li.label == 'hallucinated').sum())}/{len(li)}"
+            if len(lo):
+                row["out_of_kb: correctly refused (human)"] = f"{int((lo.label == 'refused').sum())}/{len(lo)}"
+            row["hallucination rate (all)"] = round((labelled.label == "hallucinated").sum() / len(labelled), 2)
         summary.append(row)
 
     summary_df = pd.DataFrame(summary)

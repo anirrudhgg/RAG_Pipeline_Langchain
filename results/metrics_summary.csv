@@ -1,6 +1,6 @@
-﻿mode,"context relevance, in_kb (RAG)",in_kb: questions with a relevant chunk,answer relevance 1-5 (judge),answer similarity (embeddings),in_kb: hallucinated answers,in_kb: hallucination rate,in_kb: unsupported claims,out_of_kb: answered without grounding,in_kb: faithfulness (claims backed by sources),in_kb: fully faithful answers,citation precision
-plain,,,3.83,0.63,4/4,1.0,7/8,2/4,0.15,0/4,
-rag: Zero-shot,0.26,5/6,4.6,0.72,1/5,0.2,1/14,0/4,0.97,4/5,1.0
-rag: Few-shot,0.26,5/6,4.2,0.74,0/5,0.0,0/13,0/4,0.92,4/5,0.87
-rag: Chain-of-thought,0.26,5/6,3.83,0.61,0/6,0.0,0/14,0/4,1.0,6/6,0.96
-rag: Tree-of-thoughts,0.26,5/6,4.5,0.72,0/6,0.0,0/17,2/4,0.96,5/6,0.75
+﻿mode,"context relevance, in_kb (RAG)",in_kb: questions with a relevant chunk,answer relevance 1-5 (judge),answer similarity (embeddings),in_kb: hallucinated answers,in_kb: hallucination rate,in_kb: unsupported claims,out_of_kb: answered without grounding,in_kb: faithfulness (claims backed by sources),in_kb: fully faithful answers,citation precision,judge agrees with humans
+plain,,,3.83,0.65,4/4,1.0,12/13,2/4,0.09,0/4,,10/10
+rag: Zero-shot,0.29,5/6,4.6,0.73,0/5,0.0,0/12,0/4,1.0,5/5,1.0,8/10
+rag: Few-shot,0.29,5/6,4.2,0.73,0/5,0.0,0/13,0/4,0.95,4/5,0.93,9/10
+rag: Chain-of-thought,0.29,5/6,4.0,0.77,1/5,0.2,1/10,0/4,0.95,4/5,0.8,9/10
+rag: Tree-of-thoughts,0.29,5/6,4.4,0.69,0/5,0.0,0/10,0/4,0.9,4/5,0.77,9/10
