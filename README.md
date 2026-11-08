@@ -88,6 +88,7 @@ python diagnose.py              # where each document type ranks for a question
 python evaluate.py              # RAG (4 prompt styles) vs plain LLM on eval_questions.csv
 python evaluate.py --summarise  # rebuild the summary after labelling the answers
 python metrics.py               # relevance + hallucination metrics (judge model: qwen2.5:7b)
+python benchmark.py             # GPU vs CPU timings (the CPU part is slow: several minutes per question)
 ```
 
 ## How it works
@@ -134,48 +135,71 @@ Overlap 100 beat 0 at every size. Per document type, 300/100 was best for PDFs (
 | Similarity | 0.92 | 0.82 | 2.8 |
 | MMR | 0.92 | 0.82 | 3.4 |
 
-### Response times (RTX 5070)
-| Step | Time |
-|---|---|
-| Building the database (embedding 1,845 chunks) | ~8 s (GPU) vs ~185 s (CPU) |
-| Retrieval | ~10 ms |
-| Generation (zero-shot) | ~1.5–2 s |
-| Generation (chain-of-thought) | ~3 s |
+### Response times: RTX 5070 vs CPU
+Same model, same questions, measured on one PC (GPU: NVIDIA RTX 5070, 12 GB; CPU: AMD Ryzen 7 9800X3D, 8 cores) with `benchmark.py`, which runs the identical workload once on the GPU and once with everything forced onto the CPU (embedding model on `cpu`, Ollama with `num_gpu=0`).
+
+| Step | RTX 5070 | CPU only | CPU slower by |
+|---|---|---|---|
+| Embedding 500 chunks (benchmark) | 0.1 s | 1.8 s | 18× (measured) |
+| Embedding the first database, 536 chunks (`ingest.py`) | 15.7 s | 185 s | 12× (measured) |
+| All 30 benchmark answers (6 questions × plain LLM + 4 prompt styles) | ~1 min | stopped after 60+ min, unfinished | **at least 60×** (measured) |
+| Retrieval per question (MMR, k=6) | 7–17 ms | milliseconds | not significant |
+
+Per answer, average over the 10 evaluation questions. GPU measured; CPU **estimated** from the measured slowdown (GPU time × 60, so a lower bound):
+
+| Mode | RTX 5070 (measured) | CPU (estimated, at least) |
+|---|---|---|
+| Plain LLM | 0.89 s | ~55 s |
+| RAG zero-shot | 0.75 s | ~45 s |
+| RAG few-shot | 1.35 s | ~1.5 min |
+| RAG chain-of-thought | 2.01 s | ~2 min |
+| RAG tree-of-thoughts | 4.99 s | ~5 min |
+
+The final database (1,845 chunks) embeds in ~8 s on the GPU. Retrieval costs milliseconds on either device; almost all time is the LLM.
+
+**Why a top gaming CPU is this slow for LLMs:** generating each token requires reading all ~5 GB of model weights from memory, so speed is limited by memory bandwidth (dual-channel DDR5 ≈ 60–80 GB/s vs ≈ 670 GB/s GDDR7 on the RTX 5070). Processing the ~2,000-token RAG prompt is parallel math, where 8 CPU cores compete with thousands of GPU cores. The 9800X3D's large 3D V-Cache helps games but not here: the weights are ~50× larger than the cache. This is why the CPU ran at only ~50–65 % utilisation: the cores were mostly waiting for data from memory. For an interactive RAG system, a GPU is not a luxury but a requirement: the same answer takes about a second instead of about a minute.
 
 ### RAG vs plain LLM
-10 questions (`eval_questions.csv`): 6 answerable from the knowledge base, 4 outside it. Every question was asked to the plain LLM (no retrieval) and to RAG with each prompt style (`results/eval_summary.csv`).
+10 questions (`eval_questions.csv`): 6 answerable from the knowledge base, 4 outside it. Every question was asked to the plain LLM (no retrieval) and to RAG with each prompt style. All 50 answers were labelled by a team member (correct / partial / wrong / hallucinated / refused) in `results/eval_answers.csv`; the summary is in `results/eval_summary.csv`.
 
 | | Plain LLM | Zero-shot | Few-shot | Chain-of-thought | Tree-of-thoughts |
 |---|---|---|---|---|---|
-| Outside KB: correctly said "I don't know" | 2/4 | **4/4** | **4/4** | **4/4** | 2/4 |
-| Inside KB: wrongly refused | 2/6 | 1/6 | 1/6 | 0/6 | 0/6 |
-| Inside KB: answers with a citation | – | 4/5 | **5/5** | 6/6 | 6/6 |
-| Average response time | 0.8 s | 0.6 s | 0.7 s | 2.1 s | 4.5 s |
+| **Accuracy inside KB** (correct + ½ partial, human labels) | **0.00** | 0.67 | **0.75** | **0.75** | **0.75** |
+| **Hallucinated inside KB** (human labels) | **4/6** | 0/6 | 0/6 | 0/6 | 0/6 |
+| Outside KB: correctly said "I don't know" | 2/4 | **4/4** | **4/4** | **4/4** | **4/4** |
+| Inside KB: refused | 2/6 | 1/6 | 1/6 | 1/6 | 1/6 |
+| Inside KB: answers with a citation | – | 4/5 | 5/5 | 5/5 | 5/5 |
+| Average retrieval time | – | 17 ms | 8 ms | 7 ms | 7 ms |
+| **Average total response time** | 0.89 s | 0.75 s | 1.35 s | 2.01 s | 4.99 s |
 
-The one question RAG refuses (Q6) needs two sources at once (a paper and a video); retrieval found only one, so the model declined instead of guessing.
+Times measured on the demo machine (RTX 5070, Llama 3.1 8B via Ollama), averaged over the 10 questions. Retrieval takes milliseconds; almost all time is generation, which grows with the length of the prompt style's reasoning.
+
+- **Plain LLM:** it answered none of the knowledge-base questions correctly and invented 4 of 6 answers outright: RAG as "Red-Amber-Green" status colours, as "Recognition and Activation" of genes, as a "Recurrent Attention-Generative" model, and an invented paper title ("Real Language Understanding for Dialogue Generation with Reinforced Actor-Guesser").
+- **RAG:** no hallucinated answers in any style. The missing accuracy comes from Q6, which needs two sources at once (a paper and a video) — retrieval found only one, so the model declined instead of guessing — and Q5, where all styles explained the decoding difference but missed the core definition (one document per answer vs one per token).
+- **Repeatability:** even at temperature 0, two evaluation runs gave slightly different answers for 20 of 50 questions (GPU non-determinism). All labels and metrics here therefore come from one single run.
 
 ### Evaluation metrics
 Scored with `metrics.py`, using a different model (Qwen 2.5 7B) as the judge so Llama does not grade its own answers (`results/metrics_summary.csv`).
 
 | | Plain LLM | Zero-shot | Few-shot | Chain-of-thought | Tree-of-thoughts |
 |---|---|---|---|---|---|
-| **Hallucinated answers** (inside KB) | **4/4** | 1/5 | **0/5** | **0/6** | **0/6** |
-| Unsupported claims (inside KB) | 7/8 | 1/14 | 0/13 | 0/14 | 0/17 |
-| Answered outside KB anyway | 2/4 | 0/4 | 0/4 | 0/4 | 2/4 |
-| Answer relevance (judge, 1–5) | 3.8 | 4.6 | 4.2 | 3.8 | 4.5 |
-| Answer–question similarity (embeddings) | 0.63 | 0.72 | 0.74 | 0.61 | 0.72 |
-| **Faithfulness** (claims backed by the sources) | **0.15** | **0.97** | **0.92** | **1.00** | **0.96** |
-| Fully faithful answers (inside KB) | 0/4 | 4/5 | 4/5 | 6/6 | 5/6 |
-| Citation precision (cited source states the claim) | – | 1.00 | 0.87 | 0.96 | 0.75 |
+| **Hallucinated answers** (judge, inside KB) | **4/4** | **0/5** | **0/5** | 1/5 | **0/5** |
+| Unsupported claims (inside KB) | 12/13 | 0/12 | 0/13 | 1/10 | 0/10 |
+| Answered outside KB anyway | 2/4 | 0/4 | 0/4 | 0/4 | 0/4 |
+| **Faithfulness** (claims backed by the sources) | **0.09** | **1.00** | **0.95** | **0.95** | **0.90** |
+| Fully faithful answers (inside KB) | 0/4 | 5/5 | 4/5 | 4/5 | 4/5 |
+| Citation precision (cited source states the claim) | – | 1.00 | 0.93 | 0.80 | 0.77 |
+| Answer relevance (judge, 1–5) | 3.8 | 4.6 | 4.2 | 4.0 | 4.4 |
+| Answer–question similarity (embeddings) | 0.65 | 0.73 | 0.73 | 0.77 | 0.69 |
 | Questions with a relevant retrieved chunk | – | 5/6 | 5/6 | 5/6 | 5/6 |
-| Share of retrieved chunks that are relevant | – | 0.26 | 0.26 | 0.26 | 0.26 |
+| Share of retrieved chunks that are relevant | – | 0.29 | 0.29 | 0.29 | 0.29 |
+| **Judge agrees with human labels** | 10/10 | 8/10 | 9/10 | 9/10 | 9/10 |
 
 - **Hallucination vs faithfulness:** hallucination detection asks whether an answer is *true* (checked against the reference answer and the sources); faithfulness asks whether it is *backed by the retrieved documents* (sources only). "Canberra" is true but not faithful.
-- **Hallucination:** every answer the plain LLM gave inside the knowledge base was invented: RAG as "Red-Amber-Green" status colours, "Recognition and Action", "Recurrent Attention-Generative", "Reinforced Actor-Guesser". RAG's only flagged answer (zero-shot) invented a part of the question it then said the sources did not cover.
-- **Prompt styles:** few-shot and chain-of-thought were fully grounded and refused all out-of-scope questions. Tree-of-thoughts answered 2 of 4 out-of-scope questions: its long reasoning gives the 8B model more room to drift from the sources.
+- **Faithfulness:** the judge must quote the sentence that supports each claim, and the script verifies the quote itself (it must occur in a source and share the claim's key words; if the judge's quote fails, the script searches the sources for a matching sentence). The plain LLM's 0.09 comes from one generic fragment; none of its invented content is backed.
+- **Prompt styles:** zero-shot was fully faithful with perfect citations; tree-of-thoughts cited the wrong source most often (0.77). Chain-of-thought once ended with only a citation ("Answer: [1]") instead of a sentence.
 - **Retrieval:** with k=6 and MMR (deliberately diverse chunks) only a few chunks can contain the answer, so the share of relevant chunks is low by design; 5 of 6 questions had at least one chunk containing the answer.
-- **Faithfulness:** the judge must quote the sentence that supports each claim, and the script verifies the quote itself (it must occur in a source and share the claim's key words; if the judge's quote fails, the script searches the sources for a matching sentence). The plain LLM's 0.15 comes from two generic fragments ("The output is also a sequence of tokens"); none of its invented content is backed. Chain-of-thought was fully faithful; tree-of-thoughts cited the wrong source most often (citation precision 0.75).
-- **Judge reliability:** the judge needed several iterations (it rejected passages that did not repeat the paper's name, counted citations as claims, accepted support that was only on the same topic, and once looped while copying text, which is now retried). It still makes occasional mistakes, so human labels in `results/eval_answers.csv` remain the reference.
+- **Judge reliability:** the judge agrees with the human labels on 45 of 50 answers (90%). Most disagreements are on Q5, where the judge calls answers "correct" that humans rated "partial": it checks whether each statement is *true*, not whether the answer is *complete*. Chain-of-thought's one "hallucinated" flag is a judge error (it called a citation that the source does state unverifiable). Getting the judge reliable took several iterations: it rejected passages that did not repeat the paper's name, counted citations as claims, accepted support that was only on the same topic, and once looped while copying text (now retried).
 
 ## Challenges and solutions
 
@@ -199,6 +223,7 @@ Scored with `metrics.py`, using a different model (Qwen 2.5 7B) as the judge so 
 ├── diagnose.py            Rank of each document type for a question
 ├── evaluate.py            RAG vs plain LLM evaluation (answers, timings, automatic checks)
 ├── metrics.py             Evaluation metrics: context/answer relevance, hallucination detection
+├── benchmark.py           GPU vs CPU timing benchmark
 ├── test_questions.py      Retrieval test questions with known sources
 ├── eval_questions.csv     Evaluation questions (inside / outside the knowledge base)
 ├── data/                  PDFs, web page URLs, YouTube URLs

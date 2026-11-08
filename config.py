@@ -66,8 +66,12 @@ CONTEXT_WINDOW = 2
 YOUTUBE_WINDOW_SECONDS = 60
 
 
-def get_embeddings():
-    """Return the embedding model used for both indexing and querying."""
+def get_embeddings(device: str | None = None):
+    """
+    Return the embedding model used for both indexing and querying.
+    device: None = automatic (GPU if available), or "cpu" / "cuda" to force one
+    (used by benchmark.py to compare hardware).
+    """
     from langchain_huggingface import HuggingFaceEmbeddings
 
     # Normalised vectors -> L2 distance and cosine similarity give the same ranking
@@ -75,4 +79,5 @@ def get_embeddings():
     return HuggingFaceEmbeddings(
         model_name=EMBEDDING_MODEL,
         encode_kwargs={"normalize_embeddings": True},
+        model_kwargs={"device": device} if device else {},
     )
