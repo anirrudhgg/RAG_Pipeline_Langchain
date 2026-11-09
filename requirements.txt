@@ -2,7 +2,6 @@ langchain
 langchain-community
 langchain-text-splitters
 langchain-ollama
-langchain-openai
 langchain-chroma
 langchain-huggingface
 chromadb
@@ -13,5 +12,3 @@ youtube-transcript-api
 streamlit
 python-dotenv
 pandas
-ipykernel
-fonttools

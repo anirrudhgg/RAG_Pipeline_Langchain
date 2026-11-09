@@ -32,9 +32,9 @@ JUDGE_MODEL = os.getenv("JUDGE_MODEL", "qwen2.5:7b")
 
 # --- Chunking (in characters), per document type -------------------------------
 # Chosen with experiments.py (15 size/overlap combinations, 12 test questions,
-# results in results/chunking_summary.csv). Overlap 100 beat 0 at every size, and
-# 300/100 is tied for best overall (MRR 0.82, with 1000/100) and best for PDFs (MRR 0.89),
-# which are most of the knowledge base. (Before Wikipedia's reference list was removed it
+# results in results/chunking_summary.csv). Overlap 100 helped at 300 and 1000 characters,
+# and 300/100 is within 0.01 of the best overall (MRR 0.82 vs 0.83 for 1000/200) and best
+# for PDFs (MRR 0.89), which are most of the knowledge base. (Before Wikipedia's reference list was removed it
 # scored 0.86: that list had counted as a 'hit' for the Wikipedia question.)
 #
 # Per type, the experiment preferred web 1000 and video unsplit (~1000-1200 chars).
