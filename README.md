@@ -62,7 +62,7 @@ pip install torch --index-url https://download.pytorch.org/whl/cu128 --force-rei
 
 Embedding the knowledge base takes about 8 s on an RTX 5070 and a few minutes on a CPU.
 
-**Weaker laptop?** Use a smaller model: `ollama pull llama3.2:3b`, then create a `.env` file containing `OLLAMA_MODEL=llama3.2:3b`. The default is `llama3.1:8b`, so no `.env` is needed otherwise.
+**Weaker laptop?** Use a smaller model: `ollama pull llama3.2:3b`, then copy `.env.example` to `.env` and set `OLLAMA_MODEL=llama3.2:3b` in it. The default is `llama3.1:8b`, so no `.env` is needed otherwise.
 
 ## Usage
 
@@ -123,7 +123,7 @@ PDFs live in `data/pdfs/`; web and video links are in `data/urls.txt` and `data/
 |---|---|---|
 | Loading | PyPDFLoader, WebBaseLoader, youtube-transcript-api | One loader per document type; transcripts grouped into 60-second windows with timestamps |
 | Cleaning | Reference lists removed from PDFs and web pages | Bibliographies matched almost every query and ranked first without explaining anything |
-| Chunking | 300 characters, 100 overlap, all types | Tied best overall (MRR 0.82) and best for PDFs (0.89); equal sizes stop short chunks from outranking long ones |
+| Chunking | 300 characters, 100 overlap, all types | Within 0.01 of the best overall MRR (0.82 vs 0.83) and best for PDFs (0.89); equal sizes stop short chunks from outranking long ones |
 | Embeddings | all-MiniLM-L6-v2, normalised | Small, fast, local; normalised vectors make L2 distance equivalent to cosine similarity |
 | Vector DB | ChromaDB (HNSW), persistent, 1,845 chunks | Local, simple, stores source / page / timestamp metadata for citations |
 | Retrieval | MMR, k=6 | Same accuracy as similarity search, more diverse results (3.4 vs 2.8 distinct sources in the top 4) |
@@ -180,7 +180,7 @@ Scored with `metrics.py` using Qwen 2.5 7B as judge, so Llama does not grade its
 | 300 / 0 | 1,564 | 0.75 | 0.83 | 0.77 |
 | 1000 / 0 | 474 | 0.50 | 0.92 | 0.67 |
 
-Overlap 100 beat 0 at every size. The final database has 1,845 chunks rather than 1,846 because the live Wikipedia page changed slightly between the two fetches. Removing Wikipedia's reference list lowered the 300/100 score from 0.86 to 0.82, because the reference list had counted as a false "hit", so the lower figure is the honest one.
+Overlap helped at 300 and 1000 characters (MRR 0.77 → 0.82 and 0.67 → 0.82), but not at every size: at 800 and 1500 characters, no overlap scored higher. 1000/200 scored best overall (0.83), but 300/100 was best for the PDFs, which make up most of the knowledge base, and 1000-character chunks come close to the embedding model's 256-token limit. The final database has 1,845 chunks rather than 1,846 because the live Wikipedia page changed slightly between the two fetches. Removing Wikipedia's reference list lowered the 300/100 score from 0.86 to 0.82, because the reference list had counted as a false "hit", so the lower figure is the honest one.
 
 | Search method | hit@4 | MRR | Distinct sources in top 4 |
 |---|---|---|---|
@@ -259,6 +259,7 @@ After changing chunk settings or the documents, run `python ingest.py` again.
 ├── test_questions.py      Retrieval test questions with known sources
 ├── eval_questions.csv     Evaluation questions (inside / outside the knowledge base)
 ├── requirements.txt       Python dependencies
+├── .env.example           Template for .env (choose the Ollama model)
 ├── data/                  PDFs, web page URLs, YouTube URLs
 ├── results/               Experiment and evaluation output (CSV)
 └── .streamlit/config.toml Streamlit settings
