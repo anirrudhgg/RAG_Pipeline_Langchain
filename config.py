@@ -50,8 +50,9 @@ CHUNK_SETTINGS = {
 }
 
 # --- Retrieval defaults ---------------------------------------------------------
-# MMR beat plain similarity search in experiments.py (hit@4 1.00 vs 0.92, more
-# distinct results). k=6 because the small PDF chunks carry less text each.
+# MMR matched plain similarity search in experiments.py (hit@4 0.92, MRR 0.82 for both)
+# and returned more distinct sources (3.4 vs 2.8 in the top 4).
+# k=6 because the small PDF chunks carry less text each.
 DEFAULT_K = 6
 DEFAULT_SEARCH = "mmr"
 
