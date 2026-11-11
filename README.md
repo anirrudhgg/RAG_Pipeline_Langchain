@@ -187,11 +187,11 @@ Overlap helped at 300 and 1000 characters (MRR 0.77 → 0.82 and 0.67 → 0.82),
 | Similarity | 0.92 | 0.82 | 2.8 |
 | MMR | 0.92 | 0.82 | 3.4 |
 
-### Hardware: RTX 5070 vs CPU
+### Hardware: RTX 5070 vs Ryzen 7 9800x3ds
 
 `benchmark.py` runs the identical workload on the GPU and with everything forced onto the CPU.
 
-| Step | RTX 5070 | CPU only | CPU slower by |
+| Step | RTX 5070 | ryzen 7 9800x3d only | ryzen 7 9800x3d slower by |
 |---|---|---|---|
 | Embedding 500 chunks | 0.1 s | 1.8 s | 18× |
 | Embedding the first database (536 chunks, `ingest.py`) | 15.7 s | 185 s | 12× |
