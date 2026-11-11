@@ -60,7 +60,7 @@ streamlit run app.py             # opens http://localhost:8501
 pip install torch --index-url https://download.pytorch.org/whl/cu128 --force-reinstall
 ```
 
-Embedding the knowledge base takes about 8 s on an RTX 5070 and a few minutes on a CPU.
+Embedding the knowledge base takes about 8 s on an RTX 5070 and a few minutes on a ryzen 7 9800x3d.
 
 **Weaker laptop?** Use a smaller model: `ollama pull llama3.2:3b`, then copy `.env.example` to `.env` and set `OLLAMA_MODEL=llama3.2:3b` in it. The default is `llama3.1:8b`, so no `.env` is needed otherwise.
 
@@ -198,7 +198,7 @@ Overlap helped at 300 and 1000 characters (MRR 0.77 → 0.82 and 0.67 → 0.82),
 | 30 benchmark answers (6 questions × 5 modes) | ~1 min | stopped after 60+ min | ≥ 60× |
 | Retrieval per question (MMR, k=6) | 7–17 ms | milliseconds | not significant |
 
-Retrieval costs milliseconds on either device; almost all time is the LLM. Generating each token requires reading ~5 GB of weights from memory, so speed is limited by memory bandwidth (dual-channel DDR5 ≈ 60–80 GB/s vs ≈ 670 GB/s on the RTX 5070), not by CPU cores. The CPU sat at only 50–65% utilisation waiting for data. For interactive use, a GPU is effectively a requirement: about one second per answer instead of about one minute.
+Retrieval costs milliseconds on either device; almost all time is the LLM. Generating each token requires reading ~5 GB of weights from memory, so speed is limited by memory bandwidth (dual-channel DDR5 ≈ 60–80 GB/s vs ≈ 670 GB/s on the RTX 5070), not by CPU cores. The ryzen 7 9800x3d sat at only 50–65% utilisation waiting for data. For interactive use, a GPU is effectively a requirement: about one second per answer instead of about one minute.
 
 ## Configuration
 
